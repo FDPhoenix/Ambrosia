@@ -1,0 +1,115 @@
+.sidebar {
+  width: 270px;
+  height: 664px;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+}
+
+.logo {
+  min-height: 70px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.logoIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.logoText {
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Inter';
+  letter-spacing: 0.8px;
+}
+
+.nav {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.nav::-webkit-scrollbar {
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.nav:hover::-webkit-scrollbar {
+  width: 7px;
+  opacity: 1;
+}
+
+.nav::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 7px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.nav:hover::-webkit-scrollbar-thumb {
+  opacity: 1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 0 12px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #374151;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.menuItem:hover {
+  background-color: #F09C42;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.active {
+  background-color: #F09C42;
+}

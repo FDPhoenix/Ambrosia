@@ -1,0 +1,247 @@
+.newsContainer {
+    width: 100%;
+    background-color: #EFF4F8;
+}
+
+/* Container */
+.container {
+    max-width: 1350px;
+    margin: auto;
+    padding: 50px;
+    background-color: #EFF4F8;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.title {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #555;
+}
+
+/* Filter */
+.filterContainer {
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.categorySelect {
+    padding: 8px 16px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background: #ECE6DF;
+}
+
+/* News List */
+.newsList {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* News Row */
+.newsRow {
+    display: flex;
+    background: #ECE6DF;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Left Image Layout */
+.leftImage {
+    flex-direction: row;
+}
+
+/* Right Image Layout */
+.rightImage {
+    flex-direction: row-reverse;
+}
+
+.imageContainer {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.newsImage {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px 0 0 8px;
+}
+
+.rightImage .newsImage {
+    border-radius: 0 8px 8px 0;
+}
+
+.placeholderImage {
+    width: 100%;
+    height: 300px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    border-radius: 8px 0 0 8px;
+}
+
+.rightImage .placeholderImage {
+    border-radius: 0 8px 8px 0;
+}
+
+.contentContainer {
+    flex: 2;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.newsTitle {
+    font-size: 24px;
+    color: #222;
+}
+
+.newsMeta {
+    display: flex;
+    gap: 20px;
+    color: #777;
+    font-size: 14px;
+}
+
+.newsAuthor {
+    font-style: italic;
+}
+
+.newsDate {
+    color: #666;
+}
+
+.newsContent {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* Badge */
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.rightImage .badge {
+    left: auto;
+    right: 10px;
+}
+
+/* Category Colors */
+.promotionBadge {
+    background-color: #28a745;
+}
+
+.newDishBadge {
+    background-color: #007bff;
+}
+
+.eventBadge {
+    background-color: #dc3545;
+}
+
+.restaurantNewsBadge {
+    background-color: #6f42c1;
+}
+
+.defaultBadge {
+    background-color: #6c757d;
+}
+
+/* Skeleton Loading */
+.skeleton {
+    display: flex;
+}
+
+.skeletonImage {
+    flex: 1;
+    min-width: 300px;
+    height: 300px;
+    background: #eee;
+    border-radius: 8px 0 0 8px;
+}
+
+.skeletonContent {
+    flex: 2;
+    padding: 25px;
+}
+
+.skeletonTitle {
+    width: 60%;
+    height: 30px;
+    background: #eee;
+    margin-bottom: 15px;
+}
+
+.skeletonText {
+    width: 100%;
+    height: 16px;
+    background: #eee;
+    margin-bottom: 15px;
+}
+
+/* Empty State */
+.emptyState {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .newsRow {
+        flex-direction: column;
+    }
+
+    .rightImage {
+        flex-direction: column;
+    }
+
+    .newsImage {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .rightImage .newsImage {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .placeholderImage {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .rightImage .placeholderImage {
+        border-radius: 8px 8px 0 0;
+    }
+
+    .rightImage .badge {
+        left: 10px;
+        right: auto;
+    }
+
+    .newsMeta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}

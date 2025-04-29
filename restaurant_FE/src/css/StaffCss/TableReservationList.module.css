@@ -1,0 +1,488 @@
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.contentContainer {
+  width: 100%;
+  height: 576px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contentTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.searchContainer {
+  position: relative;
+  width: 300px;
+  background-color: #ededed;
+  border-radius: 5px;
+}
+
+.searchInput {
+  width: 100%;
+  position: absolute;
+  padding: 9px 10px;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  background-color: #ededed;
+  top: 2px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  font-size: 20px;
+  color: #b5ada1;
+}
+
+.contentFilter {
+  display: flex;
+}
+
+.contentTitle h3 {
+  font-weight: bold;
+  color: #333;
+  margin-left: 12px;
+}
+
+.contentTitle button {
+  background-color: #f0924c;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 13px;
+}
+
+.contentTitle button:hover {
+  background-color: #d87c3b;
+}
+
+.formFilter {
+  padding: 9px;
+}
+
+.mainContent {
+  overflow-x: auto;
+  border-radius: 8px;
+  max-height: 465px;
+  overflow-y: auto;
+}
+
+.mainContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.orderTypeBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 90px;
+  text-transform: capitalize;
+}
+
+.dine-in {
+  color: #207e36;
+}
+
+.delivery {
+  color: #044c99;
+}
+
+.reservationTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.reservationTable th,
+.reservationTable td {
+  padding: 22px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reservationTable th {
+  font-weight: bold;
+}
+
+.reservationTable td {
+  background-color: #fff;
+}
+
+/* Responsive table on mobile */
+@media (max-width: 768px) {
+  .reservationTable {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .reservationTable thead {
+    display: none;
+  }
+
+  .reservationTable tbody,
+  .reservationTable tr,
+  .reservationTable td {
+    display: block;
+    width: 100%;
+  }
+
+  .reservationTable tr {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .reservationTable td {
+    text-align: left;
+    padding-left: 50%;
+    position: relative;
+  }
+
+  .reservationTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+  color: #f0924c;
+}
+
+.status {
+  border-radius: 18px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 120px;
+  cursor: pointer;
+}
+.statusDropdown {
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  appearance: none;
+  text-align: center;
+  border: none;
+  outline: none;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* .confirmed {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.confirmed::before {
+  color: #155724;
+}
+
+.pending {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.pending::before {
+  color: #856404;
+}
+
+.canceled {
+  background-color: #f8d7da;
+  color: #721c24;
+} */
+
+.canceled::before {
+  color: #721c24;
+}
+
+.statusDropdown:hover {
+  filter: brightness(95%);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 90%;
+  width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    width: 95%;
+    max-height: 85vh;
+    padding: 15px;
+  }
+}
+
+.modalHeader {
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+.modalHeader p strong {
+  display: flex;
+  justify-content: space-between;
+}
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+}
+
+.modal::-webkit-scrollbar {
+  width: 0px;
+}
+
+.viewIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.modalTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modalTable thead {
+  background-color: #f1f1f1;
+}
+.modalTable tfoot {
+  background-color: #f1f1f1;
+}
+
+.modalTable th,
+.modalTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f1f1f1;
+}
+
+.totalLabel {
+  color: #222;
+  align-content: space-between;
+}
+
+.totalAmount {
+  color: #d87c3b;
+  font-size: 16px;
+}
+
+.modalInfoRow {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ccc;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.modalInfoRow strong {
+  font-weight: bold;
+  color: #222;
+}
+
+.headerDishList {
+  margin-left: 2px;
+  padding: 2px 2px;
+  font-size: 14px;
+}
+
+.noOrderContainer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+.modalInfoRow span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 76%;
+}
+
+/* Responsive:If the screen is small, use column instead of row */
+@media (max-width: 600px) {
+  .modalInfoRow {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+/* Hide spinner in input number */
+.noSpinner::-webkit-outer-spin-button,
+.noSpinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.noSpinner {
+  -moz-appearance: textfield;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+.closeButton {
+  width: 60%;
+  background-color: #f0924c;
+  color: white;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.saveButton {
+  background-color: #f0924c;
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saveButton:hover {
+  background-color: #f4832c;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.noResults {
+  text-align: center;
+  font-size: 16px;
+  color: #ff6347;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.cancelButton {
+  background-color: #cccccc;
+  color: black;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton:hover {
+  background-color: #b0b0b0;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}

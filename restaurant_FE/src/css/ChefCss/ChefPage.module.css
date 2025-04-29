@@ -1,0 +1,8 @@
+.pageContainer {
+  background-color: #eff4f8;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,358 @@
+/* Container styles */
+/* .container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f1ea;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(99, 74, 62, 0.15);
+} */
+
+/* Container styles */
+.container {
+  width: 100%;
+  max-width: 280px;
+  /* Thu nhỏ để phù hợp với Dropdown */
+  margin: 0 auto;
+  padding: 20px;
+  /* Giảm padding */
+  background-color: #f5f1ea;
+  border-radius: 8px;
+  box-shadow: none;
+  /* Bỏ shadow để không bị lấn trong Dropdown */
+}
+
+/* Title styles */
+.title {
+  font-size: 18px;
+  /* Thu nhỏ font */
+  font-weight: 700;
+  color: #634a3e;
+  text-align: center;
+  margin-bottom: 15px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  /* Thu nhỏ đường gạch dưới */
+  height: 2px;
+  background-color: #baa392;
+  border-radius: 2px;
+}
+
+/* Profile details */
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 15px;
+  /* Giảm margin */
+}
+
+.profileImage {
+  width: 80px;
+  /* Thu nhỏ ảnh */
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #fff;
+  /* Giảm độ dày border */
+  box-shadow: 0 2px 5px rgba(99, 74, 62, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.profileImage:hover {
+  transform: scale(1.05);
+}
+
+.profileDetails2 {
+  text-align: left;
+  width: 100%;
+}
+
+.profileDetails2 p {
+  margin-bottom: 8px;
+  /* Giảm margin */
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(186, 163, 146, 0.3);
+  color: #634a3e;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  /* Thu nhỏ font */
+}
+
+.profileDetails2 p:last-child {
+  border-bottom: none;
+}
+
+.profileDetails2 p strong {
+  font-weight: 600;
+  color: #947260;
+}
+
+/* Form and input group styles */
+.inputGroup {
+  margin-bottom: 10px;
+  /* Giảm margin */
+}
+
+.inputGroup label {
+  display: block;
+  font-size: 13px;
+  /* Thu nhỏ font */
+  font-weight: 600;
+  color: #634a3e;
+  margin-bottom: 5px;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 8px 10px;
+  /* Giảm padding */
+  border: 1px solid #baa392;
+  border-radius: 6px;
+  font-size: 13px;
+  /* Thu nhỏ font */
+  color: #634a3e;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #634a3e;
+  box-shadow: 0 0 0 1px rgba(99, 74, 62, 0.2);
+  /* Giảm shadow */
+}
+
+.error {
+  color: #e74c3c;
+  font-size: 12px;
+  /* Thu nhỏ font */
+  margin-top: 3px;
+}
+
+/* File input styling */
+input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  /* Giảm padding */
+  margin-bottom: 8px;
+  background-color: #fff;
+  border: 1px dashed #baa392;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  /* Thu nhỏ font */
+}
+
+/* Preview image */
+.previewImage {
+  max-width: 80px;
+  /* Thu nhỏ ảnh preview */
+  max-height: 80px;
+  margin: 10px auto;
+  display: block;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 2px 5px rgba(99, 74, 62, 0.15);
+}
+
+/* Button styles */
+.editButton,
+.saveButton,
+.cancelButton,
+.changePassLink {
+  padding: 8px 15px;
+  /* Giảm padding */
+  font-size: 13px;
+  /* Thu nhỏ font */
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Giảm shadow */
+}
+
+.editButton {
+  background-color: #634a3e;
+  color: white;
+  min-width: 100px;
+  /* Thu nhỏ min-width */
+}
+
+.editButton:hover {
+  background-color: #4c3b31;
+  transform: translateY(-1px);
+  /* Giảm hiệu ứng nâng */
+  box-shadow: 0 4px 8px rgba(99, 74, 62, 0.3);
+}
+
+.editButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(99, 74, 62, 0.2);
+}
+
+.saveButton {
+  background-color: #634a3e;
+  color: white;
+  min-width: 100px;
+}
+
+.saveButton:hover {
+  background-color: #4c3b31;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(99, 74, 62, 0.3);
+}
+
+.saveButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(99, 74, 62, 0.2);
+}
+
+.cancelButton {
+  background-color: #baa392;
+  color: white;
+  margin-left: 8px;
+  /* Giảm margin */
+  min-width: 100px;
+}
+
+.cancelButton:hover {
+  background-color: #a89080;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(186, 163, 146, 0.4);
+}
+
+.cancelButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(186, 163, 146, 0.3);
+}
+
+.changePassLink {
+  background-color: #baa392;
+  color: white;
+  min-width: 100px;
+}
+
+.changePassLink:hover {
+  background-color: #a89080;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(186, 163, 146, 0.4);
+}
+
+.changePassLink:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(186, 163, 146, 0.3);
+}
+
+/* Button container */
+.editButtonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  /* Giảm gap */
+  margin-top: 15px;
+  /* Giảm margin */
+}
+
+/* Error and Message styles */
+.errorMessage,
+.successMessage {
+  padding: 8px;
+  /* Giảm padding */
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-weight: 500;
+  font-size: 13px;
+  /* Thu nhỏ font */
+}
+
+.errorMessage {
+  background-color: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+  border-left: 3px solid #e74c3c;
+  /* Giảm độ dày border */
+}
+
+.successMessage {
+  background-color: rgba(46, 204, 113, 0.1);
+  color: #27ae60;
+  border-left: 3px solid #27ae60;
+}
+
+/* Loading state */
+.container div:first-child:not(.profileDetails):not(.inputGroup):not(.editButtonContainer) {
+  /* Giảm padding */
+  color: #634a3e;
+  font-size: 14px;
+  /* Thu nhỏ font */
+}
+
+/* Modal styles (có thể không cần trong Dropdown) */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  /* Giảm padding */
+  border-radius: 8px;
+  width: 300px;
+  /* Thu nhỏ width */
+  text-align: left;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: 8px;
+    /* Giảm padding */
+  }
+
+  .editButtonContainer {
+    flex-direction: column;
+    gap: 8px;
+    /* Giảm gap */
+  }
+
+  .editButton,
+  .changePassLink,
+  .saveButton,
+  .cancelButton {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .cancelButton {
+    margin-top: 8px;
+    /* Giảm margin */
+    margin-left: 0;
+  }
+}

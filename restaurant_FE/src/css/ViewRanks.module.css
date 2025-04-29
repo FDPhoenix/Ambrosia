@@ -1,0 +1,151 @@
+.container {
+    max-width: 100%;
+    /* Đảm bảo không vượt quá container cha trong EditProfile */
+    margin: 0;
+    /* Bỏ margin auto để căn chỉnh tự nhiên */
+    padding: 15px;
+    /* Giảm padding để gọn hơn */
+    background: #f8f5f2;
+    /* Đồng bộ màu nền với EditProfile */
+    border-radius: 8px;
+    box-shadow: none;
+    /* Bỏ box-shadow để giao diện nhẹ hơn */
+}
+
+.heading {
+    color: #5a3e2b;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 20px;
+    /* Giảm kích thước chữ cho phù hợp */
+    font-weight: bold;
+}
+
+.rankDetails {
+    display: flex;
+    flex-direction: column;
+    /* Hiển thị các mục theo chiều dọc */
+    gap: 10px;
+    /* Khoảng cách giữa các mục */
+    background: #fff;
+    /* Màu nền trắng cho phần nội dung */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    /* Viền nhẹ để nổi bật */
+}
+
+.rankItem {
+    display: flex;
+    justify-content: space-between;
+    /* Căn label và value ở hai bên */
+    align-items: center;
+    padding: 8px 0;
+    /* Khoảng cách trên dưới */
+    border-bottom: 1px solid #eee;
+    /* Đường viền phân cách giữa các mục */
+}
+
+.rankItem:last-child {
+    border-bottom: none;
+    /* Bỏ đường viền cho mục cuối cùng */
+}
+
+.label {
+    font-weight: bold;
+    color: #5a3e2b;
+    /* Màu chữ đậm để nổi bật */
+    font-size: 14px;
+}
+
+.value {
+    color: #333;
+    /* Màu chữ nhạt hơn cho giá trị */
+    font-size: 14px;
+    text-align: right;
+    /* Căn phải cho giá trị */
+}
+
+.input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #8d6b4e;
+    background-color: #f9f5f2;
+    font-size: 16px;
+    margin: 10px 0;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input:focus {
+    border-color: #5a3e2b;
+    background-color: #fff;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #8d6b4e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #6d4e3a;
+}
+
+.successMessage {
+    color: green;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.banner {
+    background-color: #ffdd57;
+    color: #333;
+    padding: 12px;
+    /* Giảm padding để banner gọn hơn */
+    text-align: center;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    /* Giảm kích thước chữ */
+    font-weight: bold;
+    position: relative;
+}
+
+.viewBenefitsButton {
+    margin-left: 10px;
+    padding: 6px 10px;
+    /* Giảm padding để nút nhỏ hơn */
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    /* Giảm kích thước chữ */
+}
+
+.closeBanner {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Căn giữa theo chiều dọc */
+    background: none;
+    border: none;
+    font-size: 16px;
+    /* Giảm kích thước chữ */
+    cursor: pointer;
+    color: #333;
+}

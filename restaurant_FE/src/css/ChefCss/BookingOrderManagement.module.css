@@ -1,0 +1,413 @@
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.contentContainer {
+  width: 100%;
+  height: 576px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.contentTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.contentTitle h3 {
+  font-weight: bold;
+  color: #333;
+  margin-left: 12px;
+}
+
+.contentTitle button {
+  background-color: #f0924c;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 13px;
+}
+
+.contentTitle button:hover {
+  background-color: #d87c3b;
+}
+
+.contentFilter {
+  display: flex;
+}
+
+.searchContainer {
+  position: relative;
+  width: 300px;
+  background-color: #ededed;
+  border-radius: 5px;
+}
+
+.searchInput {
+  width: 100%;
+  position: absolute;
+  padding: 9px 10px;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+  background-color: #ededed;
+  top: 2px;
+}
+
+.searchIcon {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  font-size: 20px;
+  color: #b5ada1;
+}
+
+.mainContent {
+  overflow-x: auto;
+  border-radius: 8px;
+  max-height: 465px;
+  overflow-y: auto;
+}
+
+.mainContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.noResults {
+  text-align: center;
+  font-size: 16px;
+  color: #ff6347;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.reservationTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.reservationTable th,
+.reservationTable td {
+  padding: 22px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.reservationTable th {
+  font-weight: bold;
+}
+
+.reservationTable td {
+  background-color: #fff;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+  color: #f0924c;
+}
+
+.orderTypeBadge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 90px;
+  text-transform: capitalize;
+}
+
+.dine-in {
+  color: #207e36;
+}
+
+.delivery {
+  color: #044c99;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 90%;
+  max-height: 86vh;
+  overflow-y: auto;
+  position: relative;
+  animation: fadeInModal 0.3s ease-out;
+}
+
+.modalHeader {
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ddd;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 16px;
+}
+
+.modal::-webkit-scrollbar {
+  width: 0px;
+}
+
+.viewIcon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+.modalTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.modalTable thead {
+  background-color: #f1f1f1;
+}
+.modalTable tfoot {
+  background-color: #f1f1f1;
+}
+
+.modalTable th,
+.modalTable td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+.totalContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #f1f1f1;
+}
+
+.totalLabel {
+  color: #222;
+}
+
+.totalAmount {
+  color: #d87c3b;
+  font-size: 16px;
+}
+
+.modalInfoRow {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed #ccc;
+  padding: 10px 10px;
+  font-size: 14px;
+}
+
+.modalInfoRow strong {
+  font-weight: bold;
+  color: #222;
+}
+
+.headerDishList {
+  margin-left: 2px;
+  padding: 2px 2px;
+  font-size: 14px;
+}
+
+.noOrderContainer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #555;
+}
+
+.modalInfoRow span {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  max-width: 76%;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.closeButton,
+.saveButton,
+.cancelButton {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+.closeButton {
+  padding: 12px 15px;
+  background-color: #f0924c;
+  color: white;
+  width: 60%;
+}
+
+.closeButton:hover {
+  background-color: #d87c3b;
+  transform: scale(1.05);
+}
+
+.saveButton {
+  background-color: #f0924c;
+  color: white;
+}
+
+.saveButton:hover {
+  background-color: #d87c3b;
+  transform: scale(1.05);
+}
+
+.cancelButton {
+  background-color: #cccccc;
+  color: black;
+}
+
+.cancelButton:hover {
+  background-color: #b0b0b0;
+  transform: scale(1.05);
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.formFilter {
+  padding: 9px;
+  margin: 2px;
+}
+
+.dishImage {
+  width: 110px;
+  height: 110px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  width: fit-content;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  display: inline-block;
+}
+
+.Confirmed {
+  background-color: #d4f8d4;
+  color: green;
+}
+
+.Confirmed .dot {
+  background-color: green;
+}
+
+.Pending {
+  background-color: #fff5cc;
+  color: #ffad00;
+}
+
+.Pending .dot {
+  background-color: #ffad00;
+}
+
+.Canceled {
+  background-color: #f8d4d4;
+  color: #b22222;
+}
+
+.Canceled .dot {
+  background-color: #b22222;
+}
+
+.Unknown {
+  background-color: #e0e0e0;
+  color: rgb(147, 147, 147);
+}
+
+.Unknown .dot {
+  background-color: rgb(147, 147, 147);
+}

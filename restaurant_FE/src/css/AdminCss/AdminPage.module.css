@@ -1,0 +1,13 @@
+.pageContainer {
+    background-color: #EFF4F8;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    padding-bottom: 19.5px;
+    display: flex;
+    justify-content: space-between;
+}   
+
+.rightSide {
+    margin-left: 296px;
+}

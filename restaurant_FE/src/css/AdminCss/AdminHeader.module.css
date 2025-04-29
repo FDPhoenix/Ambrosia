@@ -1,0 +1,40 @@
+.adminHeader {
+    height: 70px;
+    width: 1200px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 15px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* position: sticky;
+    top: 20px;
+    z-index: 1; */
+}
+
+.h1 {
+    font-size: 26px;
+    line-height: 68px;
+    background-color: #fff;
+}
+
+.avatarContainer {
+    display: flex;
+    gap: 25px;
+}
+
+.bellIcon {
+    margin: auto 0;
+    padding: 7px 9px;
+    background-color: #F09C42;
+    border-radius: 5px;
+}
+
+.avatar {
+    margin: auto 0;
+}
+
+.avatar img {
+    border-radius: 50%;
+}

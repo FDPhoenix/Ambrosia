@@ -1,0 +1,424 @@
+.backGround {
+    background-color: #EFF4F8;
+}
+
+.detailContainer {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 4rem 0;
+}
+
+.productDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (min-width: 768px) {
+    .productDetails {
+        flex-direction: row;
+    }
+}
+
+.productImage {
+    flex: 3;
+    max-width: 100%;
+}
+
+.mainImage {
+    width: 100%;
+    height: 660px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    object-fit: fill;
+}
+
+.thumbnailContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.thumbnail {
+    width: 180px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+}
+
+.productInfo {
+    flex: 2;
+    padding: 0 25px;
+}
+
+.productTitle {
+    font-size: 36px;
+    color: #333;
+    margin: 0 0 5px 0;
+    font-weight: 600;
+    font-family: "Times New Roman", serif;
+}
+
+.productSubtitle {
+    color: #666;
+    margin: 0 0 15px 0;
+}
+
+.ratingContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.stars {
+    display: flex;
+    color: #f8d448;
+    margin-right: 10px;
+    padding-bottom: 5px;
+}
+
+.star {
+    font-size: 18px;
+}
+
+.reviewCount {
+    color: #888;
+    font-size: 14px;
+}
+
+.priceContainer {
+    margin: 20px 0;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.price {
+    font-size: 24px;
+    color: #d83a3a;
+    font-weight: 600;
+    margin: 0;
+}
+
+.description {
+    font-size: 18px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.actionContainer {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.quantityWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 80px;
+    background-color: #EFF4F8;
+}
+
+.quantityInput {
+    width: 50px;
+    height: 38px;
+    padding: 4px 8px;
+    border: none;
+    text-align: center;
+    font-size: 14px;
+    background-color: #EFF4F8;
+    -moz-appearance: textfield;
+}
+
+.quantityInput::-webkit-outer-spin-button,
+.quantityInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.quantityControls {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid #ddd;
+}
+
+.quantityButton {
+    border: none;
+    background: none;
+    padding: 0;
+    width: 28px;
+    height: 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #666;
+    font-size: 8px;
+}
+
+.quantityButton:first-child {
+    border-bottom: 1px solid #ddd;
+}
+
+.quantityButton:hover {
+    background-color: #f5f5f5;
+}
+
+.addToCartButton {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #e5e5e5;
+    border: none;
+    color: #333;
+    padding: 0 30px;
+    height: 50px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: background-color 0.2s;
+}
+
+.addToCartButton:hover {
+    background-color: #A2845E;
+}
+
+.metaContainer {
+    margin-bottom: 30px;
+}
+
+.metaItem {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.metaLabel {
+    width: 120px;
+    color: #888;
+    font-weight: 600;
+    font-size: 17px;
+}
+
+.metaValue {
+    color: #666;
+}
+
+.tabsContainer {
+    min-height: 230px;
+    margin-top: 40px;
+}
+
+.tabsHeader {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.tabButton {
+    font-family: 'Times New Roman', Times, serif;
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #888;
+    position: relative;
+}
+
+.activeTab {
+    color: #333;
+}
+
+.activeTab::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #333;
+}
+
+.tabContent {
+    color: #666;
+    line-height: 1.6;
+}
+
+.ingredients {
+    height: 180px;
+    padding: 0 10px;
+    overflow-y: auto;
+}
+
+.ingredients::-webkit-scrollbar {
+    width: 0px;
+}
+
+.ingredientList {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.ingredientItem {
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.ingredientItem strong {
+    color: #333;
+}
+
+.ingredientItem span {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.noIngredient {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noIngredient p {
+    font-size: 18px;
+}
+
+.reviews {
+    height: 180px;
+    overflow-y: auto;
+}
+
+.reviews::-webkit-scrollbar {
+    width: 4px;
+}
+
+.reviews::-webkit-scrollbar-thumb {
+    background-color: #A2845E;
+    border-radius: 80px;
+}
+
+.review {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-right: 5px;
+    border-bottom: 1px dashed #ccc;
+}
+
+.review:last-child {
+    margin-bottom: 0;
+    border-bottom: none;
+}
+
+.noReview {
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noReview p {
+    font-size: 18px;
+}
+
+.star {
+    font-size: 20px;
+    color: #f5c518;
+}
+
+.starPartial {
+    position: relative;
+    display: inline-block;
+    color: #ddd;
+    font-size: 20px;
+}
+
+.starFill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    color: gold;
+}
+
+.starEmpty {
+    color: #ddd;
+    font-size: 20px;
+}
+
+.menuButton {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.menuItem {
+    display: block;
+    width: 100%;
+    padding: 5px 15px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+.menuItem:hover {
+    background-color: #f5f5f5;
+}
+
+.editTextarea {
+    width: 100%;
+    min-height: 80px;
+    margin: 10px 0;
+    padding: 5px;
+}
+
+.editableStar {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.filledStar {
+    color: #ffd700;
+}
+
+.star:hover {
+    color: #ffd700;
+}
+
+.saveButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.saveButton:hover {
+    background-color: #45a049;
+}

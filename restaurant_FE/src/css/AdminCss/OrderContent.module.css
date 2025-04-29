@@ -1,0 +1,283 @@
+.container {
+    width: 1200px;
+    height: 567px;
+    padding: 20px 30px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.filterContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filterContainer label {
+    margin-right: 5px;
+}
+
+select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.tableHead {
+    background: #f4f4f4;
+}
+
+.table th,
+.table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tableRow:hover {
+    background: #f9f9f9;
+}
+
+.confirmButton {
+    background: #28a745;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.confirmButton:hover {
+    background: #218838;
+}
+
+.viewButton {
+    background: none;
+    color: black;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    width: 150px;
+    justify-content: center;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.viewButton:hover {
+    color: #555;
+}
+
+
+.infoIcon {
+    font-size: 18px;
+}
+
+.mainContent {
+    max-height: 475px;
+    overflow-y: auto;
+}
+
+.mainContent::-webkit-scrollbar {
+    width: 0px;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table th,
+.table td {
+    text-align: center;
+}
+
+.tableRow td:last-child {
+    text-align: center;
+}
+
+.statusBadge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    text-transform: capitalize;
+    width: fit-content;
+}
+
+/* Chấm tròn */
+.statusDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Success */
+.success {
+    color: #1b5e20;
+    background-color: #c8e6c9;
+}
+
+.success .statusDot {
+    background-color: #1b5e20;
+}
+
+/* Failure */
+.failure {
+    color: #b71c1c;
+    background-color: #ffcdd2;
+}
+
+.failure .statusDot {
+    background-color: #b71c1c;
+}
+
+/* Expired */
+.expired {
+    color: #f57c00;
+    background-color: #ffecb3;
+}
+
+.expired .statusDot {
+    background-color: #f57c00;
+}
+
+/* Bố cục cho trạng thái */
+.status {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: bold;
+    min-width: 100px;
+    text-align: center;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.button {
+    background: #007bff;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+/* Modal Overlay */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4);
+    /* Màu nền mờ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+/* Modal Container */
+.modal {
+    background: white;
+    padding: 24px;
+    border-radius: 12px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Tiêu đề Modal */
+.modal h3 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+/* Các dòng thông tin */
+.modal p {
+    font-size: 16px;
+    color: #333;
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+}
+
+/* Chữ đậm cho tiêu đề */
+.modal p strong {
+    color: #555;
+}
+
+/* Nút đóng */
+.closeButton {
+    width: 100%;
+    padding: 10px;
+    margin-top: 12px;
+    background: #FFC107;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.closeButton:hover {
+    background: #FFB300;
+}
+
+/* Hiệu ứng mở modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

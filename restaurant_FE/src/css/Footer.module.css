@@ -1,0 +1,26 @@
+.footer {
+    background-color: #ECE6DF;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 4rem;
+}
+
+.footer p {
+    line-height: 40px;
+}
+
+.footerLinks {
+    display: flex;
+    gap: 1rem;
+    line-height: 40px;
+}
+
+.columnLink {
+    color: var(--secondary-color);
+    transition: color 0.2s;
+    text-decoration: none;
+}
+
+.columnLink:hover {
+    text-decoration: underline;
+}

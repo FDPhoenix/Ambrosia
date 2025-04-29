@@ -1,0 +1,191 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+} */
+
+.container {
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* Tiêu đề */
+.title {
+    text-align: center;
+    font-size: 24px;
+    margin: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Bảng danh sách đơn hàng */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f7e3ac;
+    color: black;
+    font-weight: bold;
+}
+
+.table td {
+    background-color: white;
+}
+
+.backButton {
+    background-color: #ffb74d;
+    transition: background-color 0.2s ease;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+}
+
+.backButton:hover {
+    background-color: #ff9800;
+    cursor: pointer;
+}
+
+.detailButton {
+    background-color: #ffb74d;
+    transition: background-color 0.2s ease;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+}
+
+.detailButton:hover {
+    background-color: #ff9800;
+    cursor: pointer;
+}
+
+/* Các style hiện có giữ nguyên */
+.modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+}
+
+.scrollable {
+    max-height: 90vh; 
+    overflow-y: auto; 
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.invoiceTitle {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+    text-transform: uppercase;
+    border-bottom: 2px solid #f7e3ac;
+    padding-bottom: 5px;
+}
+
+/* Thông tin hóa đơn */
+.invoiceInfo p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.subTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #444;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+
+.invoiceTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.invoiceTable th,
+.invoiceTable td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.invoiceTable th {
+    background-color: #f7e3ac;
+    color: black;
+    font-weight: bold;
+}
+
+/* Tổng tiền */
+.totalAmount {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    margin-top: 15px;
+    color: #d9534f;
+}
+
+/* Nút đóng modal */
+.closeIcon {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.closeIcon:hover {
+    color: black;
+    font-weight: bold;
+}
+
+/* Nút in hóa đơn */
+.printButton {
+    background-color: #ffb74d;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+}
+
+.printButton:hover {
+    background-color: #ff9800;
+}

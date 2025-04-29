@@ -1,0 +1,321 @@
+  /* Animation Overlay */
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animation Modal */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.container {
+  width: 1200px;
+  height: 567px;
+  padding: 20px 40px;
+  max-width: 1210px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Header Container --- */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* padding: 10px 30px; */
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #3f2b22 !important;
+}
+
+.formContent {
+  max-height: 445px;
+  overflow-y: auto;
+}
+
+.formContent::-webkit-scrollbar {
+  width: 0px;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.headerContainer h4 {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.addButton {
+  padding: 10px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  color: black;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.addButton:hover {
+  background-color: #f0924c; /* Đậm hơn khi hover */
+}
+
+.addIcon {
+  font-size: 16px;
+}
+
+.saveButton {
+  flex: 1;
+  background: rgb(148, 114, 96);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.saveButton:hover {
+  background: #634a3e;
+  transform: scale(1.05);
+}
+
+.cancelButton {
+  flex: 1;
+  background-color: rgb(186, 163, 146);
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancelButton:hover {
+  background: #634a3e;
+  transform: scale(1.05);
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.2s ease-in-out;
+}
+
+.content {
+  background: rgb(215, 207, 198);
+  padding: 40px;
+  border-radius: 16px;
+  width: 420px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  /* text-align: center; */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative; /* ✅ Đảm bảo dấu X nằm trên modal */
+  animation: fadeInModal 0.3s ease-in-out;
+}
+
+.modalHeader {
+  background: #baa392;
+  color: #3f2b22;
+  padding: 15px;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.modal input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+}
+
+.modalButtons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.save-button {
+  background: blue;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.cancel-button {
+  background: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between; /* Để chữ nằm bên trái và nút nằm bên phải */
+  align-items: center;
+  margin-top: 8px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #3f2b22 !important;
+}
+
+/* Table Styling */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 4px;
+}
+
+.table th,
+.table td {
+  padding: 20px;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Header Styling */
+.table thead {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+/* Row Hover Effect */
+.table tbody tr {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.table tbody tr:hover {
+  background-color: rgba(186, 163, 146, 0.205);
+  cursor: pointer;
+}
+
+/* --- Button Container --- */
+.buttonGroup {
+  display: flex;
+  gap: 8px; /* Khoảng cách giữa các nút */
+  justify-content: center;
+}
+
+/* --- General Button Styling --- */
+.actionButton {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  color: white;
+}
+
+/* --- Ban/Unban Button --- */
+.banButton {
+  background-color: #dc3545; /* Đỏ */
+}
+
+.unbanButton {
+  background-color: #28a745; /* Xanh */
+}
+
+.banButton:hover,
+.unbanButton:hover {
+  opacity: 0.8;
+}
+
+/* --- Edit Button --- */
+.editButton {
+  background-color: #ffc107; /* Vàng */
+  color: black;
+}
+
+.editButton:hover {
+  background-color: #e0a800;
+}
+
+/* --- Delete Button --- */
+.deleteButton {
+  background-color: #6c757d; /* Xám */
+}
+
+.deleteButton:hover {
+  background-color: #5a6268;
+}
+
+/* --- Icon Styling --- */
+.actionIcon {
+  font-size: 16px;
+}
+
+.navTabs {
+  display: flex;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+}
+
+.navItem {
+  list-style: none;
+}
+
+.navLink {
+  padding: 10px 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+  transition: 0.3s;
+}
+
+.navLink:hover {
+  color: #a2845e;
+}
+
+.active {
+  font-weight: bold;
+  color: #000;
+  border-bottom: 3px solid #a2845e; /* Thêm viền dưới tab */
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng của ô */
+}

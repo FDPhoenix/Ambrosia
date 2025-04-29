@@ -1,0 +1,84 @@
+.section {
+    background-color: #ECE6DF;
+    padding: 4rem 4rem;
+}
+
+.content {
+    max-width: 48rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.description {
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+}
+
+.button {
+    background-color: #1C1C1C;
+    color: white;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.grid {
+    display: grid;
+    border: none;
+    border-radius: 5px;
+}
+
+.featureContent {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    background-color: #f2f2f2;
+    justify-content: center;
+    align-items: center;
+    padding: 0 2rem;
+    padding-right: 5rem;
+    border: none;
+    border-radius: 15px 0 0 15px;
+}
+
+.featureTitle {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.featureDescription {
+    color: #1C1C1C;
+}
+
+.imageContainer {
+    background-color: #e0e0e0;
+    aspect-ratio: 1;
+    border: none;
+    border-radius: 0 15px 15px 0;
+    background-image: url(../assets/feature.jpg);
+    background-size: contain;
+}
+
+.image {
+    width: 400px;
+    height: 400px;
+    object-fit: fill;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}

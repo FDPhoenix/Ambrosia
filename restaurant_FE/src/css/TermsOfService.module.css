@@ -1,0 +1,222 @@
+.termContainer {
+  margin: 0 auto;
+  background-color: #f4f4f9;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.termHeader {
+  color: white;
+  padding: 0rem 2rem 3rem 2rem;
+  text-align: center;
+}
+
+.termHeaderIcon {
+  background-color: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.termIntro {
+  background-color: #f5f2ed;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  border-left: 4px solid #8c7b6b;
+}
+
+.termIntro p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #5d4b3c;
+}
+
+.termIntro p:last-child {
+  margin-bottom: 0;
+}
+
+.termHeader h1 {
+  margin: 0;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #000;
+  text-align: center;
+}
+
+.termHeader p {
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+  color: #666;
+  text-align: center;
+}
+
+.ctaSection {
+  text-align: center;
+  margin-top: 3.25rem;
+  margin-bottom: 1.25rem;
+  color: var(--white);
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.ctaDescription {
+  margin-bottom: 2.5rem;
+  color: #666;
+}
+
+.ctaButton {
+  background-color: #d6cfc5;
+  text-decoration: none;
+  color: black;
+  padding: 0.75rem 2rem;
+  border: 1px solid d6cfc5;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.termContent {
+  padding: 2.5rem 10rem;
+  background-color: #ffffffe8;
+  max-width: auto;
+}
+
+.termSection {
+  margin-bottom: 1.5rem;
+  border: 1px solid #d6cfc5;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+  background-color: #fff;
+}
+
+.termSection:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.termSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  background-color: #f5f2ed;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.termSectionHeader:hover {
+  background-color: #ece6df;
+}
+
+.termSectionTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.termSectionIcon {
+  color: #8c7b6b;
+  font-size: 1.25rem;
+}
+
+.termSectionHeader h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #5d4b3c;
+}
+
+.termSectionContent {
+  padding: 1.75rem;
+  border-top: 1px solid #d6cfc5;
+  line-height: 1.7;
+  color: #5d4b3c;
+  background-color: #ffffff;
+}
+
+.termSectionContent p {
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+}
+
+.termSectionContent ul {
+  margin-top: 0.75rem;
+  padding-left: 1.75rem;
+}
+
+.termSectionContent li {
+  margin-bottom: 0.75rem;
+  position: relative;
+}
+
+.termSectionContent li::before {
+  content: "";
+  position: absolute;
+  left: -1.25rem;
+  top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #a39280;
+}
+
+.termDisputeResolution {
+  background-color: #f8f5f2;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.termDisputeResolution h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #5d4b3c;
+}
+
+@media (max-width: 768px) {
+  .termHeader {
+    padding: 2rem 1.5rem;
+  }
+
+  .termHeaderIcon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+
+  .termHeader h1 {
+    font-size: 1.75rem;
+  }
+
+  .termContent {
+    padding: 1.5rem;
+  }
+
+  .termSectionHeader {
+    padding: 1rem 1.25rem;
+  }
+
+  .termSectionHeader h2 {
+    font-size: 1.1rem;
+  }
+
+  .termSectionContent {
+    padding: 1.25rem;
+  }
+}

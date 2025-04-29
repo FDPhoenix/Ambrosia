@@ -1,0 +1,119 @@
+.footer {
+    background-color: #ECE6DF;
+}
+
+.container {
+    padding: 0 4rem;
+}
+
+.grid {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.contactEmail {
+    justify-self: center;
+    /* margin-right: 6rem; */
+}
+
+.logo {
+    font-size: 2rem;
+    font-style: italic;
+    display: block;
+    margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.description {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.input {
+    flex: 1;
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.joinButton {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+
+.joinButton:hover {
+    opacity: 0.9;
+}
+
+.disclaimer {
+    font-size: 0.75rem;
+    color: var(--secondary-color);
+}
+
+.quickLink {
+    justify-self: center;
+}
+
+.connect {
+    justify-self: center;
+}
+
+.stayConnect {
+    justify-self: center;
+}
+
+.columnTitle {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.columnList {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    gap: 0.5rem;
+}
+
+.columnLink {
+    color: var(--secondary-color);
+    transition: color 0.2s ease, transform 0.2s ease;
+    text-decoration: none;
+}
+
+.columnLink:hover {
+    color: var(--primary-color);
+    transform: scale(1.4);
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.footer {
+    border-top: 1px solid #ddd;
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}

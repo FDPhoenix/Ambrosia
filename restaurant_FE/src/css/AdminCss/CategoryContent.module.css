@@ -1,0 +1,147 @@
+.container {
+  width: 1200px;
+  height: 567px;
+  padding: 20px 30px;
+  max-width: 1210px;
+  background-color: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mainContent {
+  margin-top: 20px;
+}
+
+.categoryTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.categoryTable thead {
+  background-color: #f4f4f4;
+}
+
+.categoryTable th,
+.categoryTable td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.categoryTable th {
+  font-weight: bold;
+}
+
+.categoryTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.addButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  padding: 7px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addButton:hover {
+  background-color: #F0924C;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  font-size: 20px;
+  color: #333;
+  transition: transform 0.2s;
+}
+
+.actionButton:hover {
+  transform: scale(1.2);
+  color: #f0924c;
+}
+
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  position: relative;
+  outline: none;
+}
+
+.modal h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.modal input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.modal input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.addButton {
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.addButton:hover {
+  background-color: #F0924C;
+}
+
+.cancelButton {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #F0924C;
+}

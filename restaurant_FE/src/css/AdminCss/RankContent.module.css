@@ -1,0 +1,133 @@
+.manageRankContainer {
+    width: 1200px;
+    height: 567px;
+    background-color: white;
+    padding: 20px 30px;
+    max-width: 1210px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contentTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center ;
+    margin-bottom: 15px;
+}
+
+.manageRankContainer .createBtn {
+    background-color: #f0f0f0;
+    color: black;
+    padding: 7px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.manageRankContainer .createBtn:hover {
+    background-color: #F0924C;
+}
+
+.manageRankContainer table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    overflow: hidden;
+}
+
+
+.manageRankContainer th,
+.manageRankContainer td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.manageRankContainer th {
+    background-color: #f4f4f4;
+    color: black;
+}
+
+.manageRankContainer td {
+    color: #2e2422;
+}
+
+.manageRankContainer tbody tr:last-child td{
+    border-bottom: none;
+}
+
+/* .manageRankContainer tr:nth-child(even) {
+    background-color: #f2f2f2;
+} */
+
+/* Modal */
+.manageRankContainer .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.manageRankContainer .modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.manageRankContainer .modal h3 {
+    color: #2e2422;
+}
+
+.manageRankContainer .modal input,
+.manageRankContainer .modal textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #baa392;
+    border-radius: 5px;
+}
+
+.manageRankContainer .modalButtons {
+    margin-top: 15px;
+}
+
+.manageRankContainer .modalButtons button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.manageRankContainer .modalButtons button[type="submit"] {
+    background-color: #634a3e;
+    color: white;
+}
+
+.manageRankContainer .modalButtons button[type="button"] {
+    background-color: #baa392;
+}
+
+.editIcon {
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.editIcon:hover {
+    transform: scale(1.2);
+    color: #f0924c;
+}

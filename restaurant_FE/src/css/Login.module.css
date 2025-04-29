@@ -1,0 +1,357 @@
+:root {
+  --primary-color: #a68a64; /* Màu vàng/đồng thay cho xanh dương */
+  --primary-hover: #8b7355; /* Tông đậm hơn khi hover */
+  --form-background: rgba(255, 255, 255, 0.9); /* Nền bán trong trắng */
+  --text-color: #555555; /* Chữ nhạt hơn cho độ tương phản */
+  --border-color: #d9c7a6; /* Viền tông ấm */
+  --error-color: #e74c3c;
+  --success-color: #2ecc71;
+  --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ mạnh hơn */
+  --transition: all 0.3s ease;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 2rem;
+  background-image: url('/src/assets/pexels-pixabay-260922.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* Để thêm lớp phủ */
+}
+
+/* Thêm lớp phủ mờ */
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1); /* Lớp mờ nhẹ */
+  z-index: 0;
+}
+
+.loginForm {
+  background: var(--form-background);
+  padding: 3.5rem; /* Giữ padding để form không quá cao, tập trung vào chiều ngang */
+  border-radius: 12px;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 580px; /* Tăng max-width từ 520px lên 580px để form rộng hơn theo chiều ngang */
+  transition: var(--transition);
+}
+
+.loginForm:hover {
+  transform: translateY(-5px);
+}
+
+.loginForm h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.4rem; /* Tăng font-size từ 2.2rem lên 2.4rem để tiêu đề lớn hơn, phù hợp với chiều rộng mới */
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để input rộng và cao hơn, đồng bộ với chiều ngang lớn hơn */
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: var(--transition);
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.errorMessage {
+  color: var(--error-color);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để nút lớn hơn, đồng bộ với input */
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.loginButton:hover {
+  background-color: var(--primary-hover);
+}
+
+.divider {
+  text-align: center;
+  margin: 1.5rem 0;
+  position: relative;
+  color: #888;
+}
+
+.divider span {
+  background: var(--form-background);
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.divider:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border-color);
+  z-index: 1;
+}
+
+.socialButtons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.socialButton {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để nút xã hội lớn hơn, đồng bộ với chiều ngang */
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.3rem; /* Tăng font-size từ 1.2rem lên 1.3rem để chữ lớn hơn, phù hợp với chiều rộng mới */
+  font-weight: 600;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.socialButton.google {
+  color: #db4437;
+}
+
+.socialButton.facebook {
+  color: #1877f2;
+}
+
+.socialButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.registerLink {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.registerLink a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.registerLink a:hover {
+  text-decoration: underline;
+}
+
+.passwordGroup {
+  position: relative;
+}
+
+.passwordInputContainer {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.passwordInputContainer input {
+  padding-right: 40px;
+}
+
+.passwordToggleIcon {
+  position: absolute;
+  top: 52%;
+  right: 12px;
+  cursor: pointer;
+  color: #888;
+  font-size: 1.4rem; /* Tăng font-size từ 1.2rem lên 1.4rem để icon lớn hơn, phù hợp với chiều rộng mới */
+  transition: var(--transition);
+}
+
+.passwordToggleIcon:hover {
+  color: var(--text-color);
+}
+
+@media (max-width: 480px) {
+  .loginForm {
+    padding: 2.5rem; /* Giảm padding trên mobile để form không quá lớn */
+    max-width: 90%; /* Tăng max-width trên mobile để form rộng hơn, nhưng không vượt quá màn hình */
+  }
+
+  .socialButtons {
+    flex-direction: column;
+  }
+}
+
+.formGroup input {
+  width: 100%;
+  padding: 1.2rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  transition: var(--transition);
+  font-size: 1.1rem; /* Tăng font-size từ 1rem lên 1.1rem để chữ trong input lớn hơn, phù hợp với chiều ngang */
+}
+
+.formGroup input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.formGroup input[type="email"],
+.formGroup input[type="password"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.passwordInputContainer input {
+  padding-right: 40px;
+  box-sizing: border-box;
+}
+
+.forgotPasswordLink {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.forgotPasswordLink a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem; /* Tăng font-size từ 0.9rem lên 1rem để link lớn hơn, phù hợp với chiều ngang */
+  transition: var(--transition);
+}
+
+.forgotPasswordLink a:hover {
+  text-decoration: underline;
+}
+
+.forgotPasswordLink a:focus {
+  outline: none;
+  text-decoration: underline;
+}
+
+.forgotPasswordContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.forgotPasswordForm {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.forgotPasswordForm h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.forgotPasswordForm p {
+  color: #777;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.forgotPasswordForm label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.forgotPasswordForm input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.forgotPasswordForm input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.forgotPasswordForm .submitButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.forgotPasswordForm .submitButton:hover {
+  background-color: #0056b3;
+}
+
+.forgotPasswordForm .message {
+  color: #f00;
+  margin-top: 10px;
+}
+
+.forgotPasswordForm .backToLogin {
+  margin-top: 20px;
+}
+
+.forgotPasswordForm .backToLogin a {
+  color: #007bff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.forgotPasswordForm .backToLogin a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .forgotPasswordForm {
+    padding: 15px;
+  }
+}

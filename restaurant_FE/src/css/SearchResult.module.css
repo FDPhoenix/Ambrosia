@@ -1,0 +1,85 @@
+.container {
+    width: 100%;
+    padding: 3rem 4rem;
+    min-height: 269.5px;
+    background-color: #EFF4F8;
+}
+
+.resultContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 55px;
+    margin-bottom: 1rem;
+}
+
+.resultHeader {
+    margin-bottom: 30px;
+}
+
+.menuCard {
+    background-color: #ECE6DF;
+    padding: 8px;
+    border: 1px solid #ECE6DF;
+    box-shadow: 4px 4px #acacac;
+    margin-bottom: 15px;
+}
+
+.dishThumbnail {
+    margin-bottom: 5px;
+}
+
+.imageUrl {
+    width: 215px;
+    height: 215px;
+}
+
+.dishDescription {
+    width: 215px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.name {
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 20px;
+    color: #d83a3a;
+    font-weight: bold;
+}
+
+.addCartBtn {
+    padding: 3px 15px;
+    display: flex;
+    margin: 0 auto;
+    transform: translateY(70%);
+    border-radius: 5px;
+    border: none;
+    background-color: #d69c52;
+    box-shadow: 0 3px #a37b44;
+    cursor: pointer;
+}
+
+.addCartIcon {
+    font-size: 16px;
+    margin: auto 0;
+    margin-right: 8px;
+    color: white;
+}
+
+.addTitle {
+    font-size: 13px;
+    color: white;
+    padding: 10px 0;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+}

@@ -1,0 +1,36 @@
+.staffHeader {
+  height: 70px;
+  width: 1190px;
+  max-width: 1210px;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 15px;
+  margin: 25px 0px;
+}
+
+.staffTitle {
+  font-size: 26px;
+  line-height: 68px;
+}
+
+.avatarContainer {
+  display: flex;
+  gap: 25px;
+}
+
+.bellIcon {
+  margin: auto 0;
+  padding: 7px 9px;
+  background-color: #f09c42;
+  border-radius: 5px;
+}
+
+.avatar {
+  margin: auto 0;
+}
+
+.avatar img {
+  border-radius: 50%;
+}

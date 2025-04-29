@@ -1,0 +1,365 @@
+/* Cải thiện phần tổng thể container */
+.contentContainer {
+    width: 1200px;
+    height: 567px;
+    padding: 25px 40px; /* Tăng padding để tạo không gian thoáng đãng */
+    max-width: 1210px;
+    background-color: #fff;
+    border-radius: 20px; /* Bo góc mềm mại hơn */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo chiều sâu */
+    transition: transform 0.3s ease-in-out;
+}
+
+/* .contentContainer:hover {
+    transform: scale(1.02); 
+} */
+
+/* Cải thiện tiêu đề */
+.contentTitle {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px; /* Tăng khoảng cách dưới */
+}
+
+.contentTitle h3 {
+    margin: auto 0;
+    font-size: 24px;
+    font-weight: 600; /* Làm cho tiêu đề nổi bật hơn */
+    color: #333;
+}
+
+.contentTitle button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contentTitle button:hover {
+    background-color: #f0924c;
+    color: white;
+}
+
+/* Phần hiển thị nội dung */
+.mainContent {
+    max-height: 475px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.mainContent::-webkit-scrollbar {
+    width: 5px;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.dishTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.dishTable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.dishTable th,
+.dishTable td {
+    padding: 14px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+}
+
+.dishTable th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.dishImage {
+    width: 70px;
+    height: 70px;
+    border-radius: 8px; /* Làm tròn các góc ảnh */
+    object-fit: cover;
+}
+
+.actionButton {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.actionButton:hover {
+    transform: scale(1.3);
+    color: #f0924c;
+}
+
+/* Overlay effect khi form hiện */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.formContainer {
+    background: #fff;
+    width: 480px;
+    padding: 30px;
+    border-radius: 12px; /* Bo góc mềm mại hơn */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Thêm shadow để làm nổi bật */
+    transition: transform 0.3s ease;
+}
+
+.formContainer:hover {
+    transform: scale(1.03); /* Phóng to nhẹ khi hover */
+}
+
+.formHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.formHeader button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.3s ease;
+}
+
+.formHeader button:hover {
+    color: #f0924c;
+}
+
+.formContent {
+    display: flex;
+    gap: 20px;
+}
+
+.imageUpload {
+    position: relative;
+    width: 250px;
+    height: 170px;
+    background: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+.imageUpload:hover {
+    background: #e9e9e9;
+}
+
+.imageUpload img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.imageUpload input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.formFields {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+.formFields input,
+.formFields select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.formFields input:focus,
+.formFields select:focus {
+    border-color: #f0924c;
+    outline: none;
+}
+
+.formFields button {
+    background-color: #f0924c;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.formFields button:hover {
+    background-color: #d87c3b;
+}
+
+/* Spinner reset */
+.noSpinner::-webkit-outer-spin-button,
+.noSpinner::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.noSpinner {
+    -moz-appearance: textfield;
+}
+
+/* Các hiệu ứng nút icon */
+.addIconButton {
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.addIconButton:hover {
+    background-color: #f1f1f1;
+}
+
+.addIconButton svg {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.addIconButton:hover svg {
+    transform: rotate(360deg);
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modalContainer {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modalButtons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modalButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.modalButton:hover {
+  background-color: #0056b3;
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Màu nền đậm hơn */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .modalContainer {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .modalContainer p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .modalButton {
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .modalButton:first-child {
+    background-color: #28a745;
+    color: #fff;
+  }
+  
+  .modalButton:first-child:hover {
+    background-color: #218838;
+  }
+  
+  .modalButton:last-child {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .modalButton:last-child:hover {
+    background-color: #c82333;
+  }
+  

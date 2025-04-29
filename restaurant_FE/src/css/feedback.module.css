@@ -1,0 +1,178 @@
+.feedbackContainer {
+  width: 800px; /* Tăng chiều rộng container */
+  margin: 0 auto; /* Căn giữa container */
+
+}
+  
+  .feedbackRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  
+  
+  .userNameRating {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Ba cột: tên - sao - thời gian */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    width: 100%;
+    text-align: center; /* Căn giữa nội dung */
+  }
+  
+  .userName {
+    text-align: left; /* Căn trái */
+  }
+  .ratingEdit{
+    padding: 5px;
+  }
+  .rating {
+    display: flex;
+    justify-content: center; /* Căn giữa ngôi sao trong cột giữa */
+    align-items: center;
+  }
+  
+  .feedbackTime {
+    text-align: right; /* Căn phải */
+    padding-left: 100px;
+  }
+  
+  
+  .rating  {
+    color: #ffcc00; /* Màu vàng cho sao */
+    font-size: 18px;
+    font-size: 20px; 
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .text {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .userName {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .feedbackItem {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ECE6DF;
+    border: 2px solid #A2845E;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    position: relative;
+  }
+  
+  .userInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .userAvatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #A2845E;
+  }
+  
+  
+  
+  .optionsContainer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .optionsIcon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #ff9800;
+  }
+  
+  .optionsMenu {
+    position: absolute;
+    top: 13px;
+    right: 0;
+    background-color: #fff;
+    border: 1px solid #A2845E;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .optionsDropdown {
+    position: absolute;
+    right: 0;
+    margin-top: 4px;
+    background: #ECE6DF;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column; /* Xếp các nút theo chiều dọc */
+    z-index: 10;
+  }
+  
+  .dropdownItem {
+    padding: 8px 12px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #592a2a;
+  }
+  .saveEdit{
+    padding: 10px 20px;
+    background-color: #af684c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .editingContainer {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    width: 100%;
+  }
+
+  
+  .saveButton {
+    padding: 10px 15px;
+    height: fit-content; 
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .saveButton:hover {
+    background-color: #0056b3;
+  }
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color:#A2845E;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out;
+  }
+  

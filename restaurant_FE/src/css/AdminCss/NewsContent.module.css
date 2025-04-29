@@ -1,0 +1,345 @@
+/* Tổng thể container */
+.container {
+    width: 1200px;
+    height: 567px;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Nút thêm tin tức */
+.addButton {
+    margin-left: 20px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.addButton:hover {
+    background-color: #f0924c;
+}
+
+/* Bảng tin tức */
+.newsTable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.newsTable thead {
+    background-color: #f4f4f4;
+}
+
+.newsTable th,
+.newsTable td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    vertical-align: middle;
+    /* Ensure vertical alignment is consistent */
+}
+
+/* Specific alignment and widths for each column */
+.newsTable th:nth-child(1),
+.newsTable td:nth-child(1) {
+    text-align: center;
+    /* Image column */
+    width: 10%;
+    /* Fixed width */
+}
+
+.newsTable th:nth-child(2),
+.newsTable td:nth-child(2) {
+    text-align: center;
+    /* Title column */
+    width: 30%;
+    /* Fixed width */
+}
+
+.newsTable th:nth-child(3),
+.newsTable td:nth-child(3) {
+    text-align: center;
+    /* Category column */
+    width: 20%;
+    /* Fixed width */
+}
+
+.newsTable th:nth-child(4),
+.newsTable td:nth-child(4) {
+    text-align: center;
+    /* Author column */
+    width: 15%;
+    /* Fixed width */
+}
+
+.newsTable th:nth-child(5),
+.newsTable td:nth-child(5) {
+    text-align: center;
+    /* Status column */
+    width: 15%;
+    /* Fixed width */
+}
+
+.newsTable th:nth-child(6),
+.newsTable td:nth-child(6) {
+    text-align: center;
+    /* Action column */
+    /* width: 10%; */
+    /* Fixed width */
+}
+
+.newsTable th {
+    /* background-color: #f9fafb; */
+    font-weight: 600;
+    /* color: #6b7280; */
+    text-transform: uppercase;
+    font-size: 12px;
+    border-bottom: 2px solid #e5e7eb;
+    /* Thicker border for header */
+    position: relative;
+    /* Add position relative for pseudo-element */
+}
+
+/* Add a pseudo-element to ensure a continuous border */
+.newsTable th::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    /* Align with the border-bottom */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #e5e7eb;
+    /* Match the border color */
+    z-index: 1;
+    /* Ensure it appears above other elements */
+}
+
+.newsTable td {
+    color: #374151;
+    font-size: 14px;
+}
+
+/* Ensure the last row doesn't have a bottom border */
+.newsTable tr:last-child td {
+    border-bottom: none;
+}
+
+.newsTable img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Status */
+.statusAvailable {
+    background-color: #d1fae5;
+    color: #10b981;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.statusUnavailable {
+    background-color: #f3f4f6;
+    /* color: #6b7280; */
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.editButton {
+    margin-right: 10px;
+}
+
+
+.editButton,
+.deleteButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+.editButton:hover,
+.deleteButton:hover {
+    transform: scale(1.2);
+    color: #f0924c;
+}
+
+.icon {
+    display: inline-block;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    text-align: left;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.modalContent h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.modalContent input,
+.modalContent textarea,
+.modalContent select {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    font-size: 14px;
+    color: #374151;
+    transition: border-color 0.3s;
+}
+
+.modalContent input:focus,
+.modalContent textarea:focus,
+.modalContent select:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.1);
+}
+
+.modalContent textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* File input styling */
+.fileInputWrapper {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fileInputLabel {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.fileInputLabel:hover {
+    background-color: #f3f4f6;
+}
+
+.fileInput {
+    display: none;
+}
+
+.fileName {
+    font-size: 14px;
+
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Checkbox */
+.checkboxWrapper {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.checkboxWrapper input {
+    width: auto;
+    margin: 0;
+}
+
+.checkboxWrapper label {
+    font-size: 14px;
+    color: #374151;
+}
+
+/* Modal buttons */
+.modalButtons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.submitButton,
+.cancelButton {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.submitButton {
+    background-color: #4f46e5;
+    color: white;
+}
+
+.submitButton:hover {
+    background-color: #4338ca;
+}
+
+.cancelButton {
+    background-color: #e5e7eb;
+
+}
+
+.cancelButton:hover {
+    background-color: #d1d5db;
+}

@@ -1,0 +1,26 @@
+.linkContainer {
+    width: 100%;
+    height: 45px;
+    padding: 0 4rem;
+    background-color: #ECE6DF;
+}
+
+.linkContent {
+    display: flex;
+    gap: 20px;
+    line-height: 50px;
+}
+
+.linkContent p {
+    line-height: 50px;
+}
+
+.linkName {
+    text-decoration: none;
+    color: grey;
+    font-size: 18px;
+}
+
+.linkName::first-letter {
+    text-transform: uppercase;
+}

@@ -1,0 +1,69 @@
+/* HomePage.module.css */
+
+/* Modal Overlay */
+.homePageModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* Mờ nền */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.homePageModalContent {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  width: 420px; /* Điều chỉnh kích thước modal */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Nút mở modal */
+.homePageOpenModalButton {
+  padding: 10px 15px;
+  background: #634a3e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.homePageOpenModalButton:hover {
+  background: #54382f;
+}
+
+/* Nút đóng modal */
+.homePageCloseModalButton {
+  padding: 10px 15px;
+  background: #634a3e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.homePageCloseModalButton:hover {
+  background: #54382f;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+

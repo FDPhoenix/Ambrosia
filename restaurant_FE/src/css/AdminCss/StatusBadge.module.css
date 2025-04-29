@@ -1,0 +1,33 @@
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 6px;
+}
+
+.available {
+    background-color: #d4f8d4;
+    color: #2e8b57;
+}
+
+.available .dot {
+    background-color: #2e8b57;
+}
+
+.unavailable {
+    background-color: #f8d4d4;
+    color: #b22222;
+}
+
+.unavailable .dot {
+    background-color: #b22222;
+}

@@ -1,0 +1,217 @@
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ✅ Animation modal xuất hiện với hiệu ứng zoom */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  animation: fadeInOverlay 0.3s ease-in-out;
+}
+
+.modalContent {
+  background: #baa392;
+  width: 90%;
+  max-width: 500px; /* Giới hạn kích thước modal */
+  max-height: 80vh; /* Giới hạn chiều cao modal */
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: fadeInModal 0.3s ease-in-out;
+}
+
+.modalHeader {
+  background: #634a3e;
+  color: white;
+  padding: 10px; /* Giảm padding để cân đối */
+  border-radius: 12px 12px 0 0; /* Bo góc trên cùng */
+  font-size: 20px; /* Kích thước chữ hợp lý */
+  text-align: center;
+  margin: 0; /* Xóa margin dư thừa */
+  line-height: 1.5; /* Cân đối dòng chữ */
+}
+
+.modalBody {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  max-height: 60vh; /* Giới hạn vùng cuộn */
+  scrollbar-width: thin;
+  scrollbar-color: #634a3e;
+}
+
+.modalFooter {
+  background: #634a3e;
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid #634a3e;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  justify-content: center;
+  gap: 10px;
+}
+
+.dishList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dishItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.dishImage {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 15px;
+}
+
+.flexCenter {
+  display: flex;
+  align-items: center;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 5px 10px;
+  background-color: white;
+}
+
+.quantityButton {
+  border: none;
+  background-color: white;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0px 20px;
+}
+
+.removeButton {
+  margin-left: 10px;
+  color: red;
+  font-size: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.confirmButton {
+  background: rgb(148, 114, 96);
+  color: white;
+  padding: 16px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.confirmButton:hover {
+  background: #0056b3;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.cancelButton {
+  background-color: rgb(186, 163, 146);
+  color: white;
+  padding: 18px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cancelButton:hover {
+  background: #b02a37;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Khoảng cách giữa các nút */
+  margin-top: 20px;
+}
+
+.submitButton,
+.confirmButton,
+.cancelButton {
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  background: var(--beige);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 18px;
+  font-weight: bold;
+  border: 2px solid #634a3e;
+  color: #634a3e;
+}
+
+.radioLabel:hover {
+  background: #634a3e;
+  color: white;
+}
+
+.radioLabel input {
+  margin-right: 10px;
+  transform: scale(1.2);
+}
+
+.radioLabel input:checked + span {
+  font-weight: bold;
+  color: white;
+}
