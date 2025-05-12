@@ -31,6 +31,8 @@ import StaffPage from "./pages/StaffPage";
 import TermsOfService from "./components/TermsOfService";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import NewsPage from "./pages/NewsPage";
+import TestTailwind from "./pages/TestTailwind";
+import './index.css';
 
 
 function App() {
@@ -74,6 +76,7 @@ function App() {
       <Route path="/staff/*" element={<StaffPage />} />
       <Route path="/terms" element={<TermsOfServicePage />} />
       <Route path="/news" element={<NewsPage />} />
+      <Route path="/taiwind" element={<TestTailwind />} />
     </Routes>
   )
 }
