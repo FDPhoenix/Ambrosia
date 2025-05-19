@@ -1,81 +1,81 @@
-import React, { useEffect, useState } from "react";
-import styles from "../../css/AdminCss/FeedbackContent.module.css";
+import type React from "react"
+import { useEffect, useState } from "react"
 
 interface Category {
-  _id: string;
-  name: string;
+  _id: string
+  name: string
 }
 
 interface Feedback {
-  _id: string;
+  _id: string
   userId: {
-    fullname: string;
-    email: string;
-    profileImage?: string;
-  };
-  rating: number;
-  comment: string;
-  isHided: boolean;
-  createdAt: string;
+    fullname: string
+    email: string
+    profileImage?: string
+  }
+  rating: number
+  comment: string
+  isHided: boolean
+  createdAt: string
 }
 
 interface Dish {
-  _id: string;
-  name: string;
-  imageUrl: string;
-  price: number;
-  category: Category;
-  isAvailable: boolean;
+  _id: string
+  name: string
+  imageUrl: string
+  price: number
+  category: Category
+  isAvailable: boolean
 }
 
-const BASE_IMAGE_URL = "http://localhost:3000/uploads/";
+const BASE_IMAGE_URL = "http://localhost:3000/uploads/"
 
 const FeedbackContent: React.FC = () => {
-  const [dishes, setDishes] = useState<Dish[]>([]);
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
-  const [selectedDish, setSelectedDish] = useState<Dish | null>(null);
-  const [loadingFeedback, setLoadingFeedback] = useState<boolean>(false);
-  const [ratingFilter, setRatingFilter] = useState<number | "">("");
+  const [dishes, setDishes] = useState<Dish[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>("")
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
+  const [selectedDish, setSelectedDish] = useState<Dish | null>(null)
+  const [loadingFeedback, setLoadingFeedback] = useState<boolean>(false)
+  const [ratingFilter, setRatingFilter] = useState<number | "">("")
 
   useEffect(() => {
-    fetchDishes();
-    fetchCategories();
-  }, [selectedCategory]);
+    fetchDishes()
+    fetchCategories()
+  }, [selectedCategory])
 
   const fetchDishes = () => {
     const apiUrl = selectedCategory
       ? `http://localhost:3000/api/feedback/allDishes?categoryId=${selectedCategory}`
-      : `http://localhost:3000/api/feedback/allDishes`;
+      : `http://localhost:3000/api/feedback/allDishes`
 
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => setDishes(Array.isArray(data) ? data : []))
-      .catch((error) => console.error("Lỗi khi tải món ăn:", error));
-  };
+      .catch((error) => console.error("Lỗi khi tải món ăn:", error))
+  }
 
   const fetchCategories = () => {
     fetch("http://localhost:3000/category/all")
       .then((res) => res.json())
       .then((data) => setCategories(Array.isArray(data.categories) ? data.categories : []))
-      .catch((error) => console.error("Lỗi khi tải danh mục:", error));
-  };
+      .catch((error) => console.error("Lỗi khi tải danh mục:", error))
+  }
 
   const fetchFeedbacks = (dishId: string) => {
-    setLoadingFeedback(true);
+    setLoadingFeedback(true)
     fetch(`http://localhost:3000/api/feedback/dish/${dishId}`)
       .then((res) => res.json())
       .then((data) => setFeedbacks(data.feedbacks || []))
       .catch(() => setFeedbacks([]))
-      .finally(() => setLoadingFeedback(false));
-  };
+      .finally(() => setLoadingFeedback(false))
+  }
 
   const handleDishClick = (dish: Dish) => {
-    setSelectedDish(dish);
-    fetchFeedbacks(dish._id);
-    setRatingFilter("");
-  };
+    setSelectedDish(dish)
+    fetchFeedbacks(dish._id)
+    setRatingFilter("")
+  }
 
   const toggleVisibility = async (id: string) => {
     try {
@@ -83,35 +83,27 @@ const FeedbackContent: React.FC = () => {
         method: "PATCH",
         credentials: "include",
         headers: { "Content-Type": "application/json" },
-      });
+      })
 
-      if (!response.ok) throw new Error("Lỗi khi cập nhật trạng thái feedback");
+      if (!response.ok) throw new Error("Lỗi khi cập nhật trạng thái feedback")
 
-      const data = await response.json();
+      const data = await response.json()
 
-      setFeedbacks((prev) =>
-        prev.map((fb) => (fb._id === id ? { ...fb, isHided: data.feedback.isHided } : fb))
-      );
+      setFeedbacks((prev) => prev.map((fb) => (fb._id === id ? { ...fb, isHided: data.feedback.isHided } : fb)))
 
-      alert(
-        data.feedback.isHided
-          ? "Feedback đã được ẩn thành công!"
-          : "Feedback đã được hiển thị lại!"
-      );
+      alert(data.feedback.isHided ? "Feedback đã được ẩn thành công!" : "Feedback đã được hiển thị lại!")
     } catch (error) {
-      console.error("Lỗi khi cập nhật trạng thái:", error);
-      alert("Đã xảy ra lỗi khi cập nhật trạng thái feedback!");
+      console.error("Lỗi khi cập nhật trạng thái:", error)
+      alert("Đã xảy ra lỗi khi cập nhật trạng thái feedback!")
     }
-  };
+  }
 
-  const filteredFeedbacks = ratingFilter
-    ? feedbacks.filter((fb) => fb.rating === ratingFilter)
-    : feedbacks;
+  const filteredFeedbacks = ratingFilter ? feedbacks.filter((fb) => fb.rating === ratingFilter) : feedbacks
 
   return (
-    <div className={styles.container}>
+    <div className="w-[1200px] h-[567px]">
       <select
-        className={styles.select}
+        className="w-[200px] p-2 mb-5 border border-gray-300 rounded-lg"
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
@@ -123,11 +115,11 @@ const FeedbackContent: React.FC = () => {
         ))}
       </select>
 
-      <div className={styles.grid}>
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-4 max-h-[512px] overflow-y-auto pr-2 scrollbar-hide">
         {dishes.map((dish) => (
           <div
             key={dish._id}
-            className={styles.card}
+            className="bg-white rounded-xl shadow-md overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-105"
             onClick={() => handleDishClick(dish)}
           >
             <img
@@ -139,28 +131,33 @@ const FeedbackContent: React.FC = () => {
                   : "https://tse4.mm.bing.net/th?id=OIP.1QDPhOmFezmjXmeTYkbOagHaE8&pid=Api&P=0&h=180"
               }
               alt={dish.name}
-              className={styles.image}
+              className="w-full h-[150px] object-cover border-b border-gray-100"
             />
-            <div className={styles.info}>
-              <h2 className={styles.dishName}>{dish.name}</h2>
-              <p className={styles.price}>{dish.price.toLocaleString()} VND</p>
+            <div className="p-3 text-center">
+              <h2 className="text-lg font-semibold my-2">{dish.name}</h2>
+              <p className="text-base text-gray-500">{dish.price.toLocaleString()} VND</p>
             </div>
           </div>
         ))}
       </div>
 
       {selectedDish && (
-        <div className={styles.modalBackdrop} onClick={() => setSelectedDish(null)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-            <h2>Feedback of {selectedDish.name}</h2>
+        <div
+          className="fixed inset-0 bg-black/60 flex justify-center items-start pt-10 z-50"
+          onClick={() => setSelectedDish(null)}
+        >
+          <div
+            className="bg-white w-[95%] max-w-[1100px] rounded-2xl p-6 relative shadow-lg max-h-[85vh] overflow-y-auto z-[1100]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-2xl font-bold text-center mb-4">Feedback of {selectedDish.name}</h2>
 
-            <div className={styles.filterContainer}>
+            <div className="flex justify-center items-center gap-2.5 mb-5">
               <label>Filter by Rating:</label>
               <select
+                className="py-1.5 px-2.5 rounded-lg border border-gray-300"
                 value={ratingFilter}
-                onChange={(e) =>
-                  setRatingFilter(e.target.value === "" ? "" : Number(e.target.value))
-                }
+                onChange={(e) => setRatingFilter(e.target.value === "" ? "" : Number(e.target.value))}
               >
                 <option value="">All</option>
                 {[1, 2, 3, 4, 5].map((star) => (
@@ -172,28 +169,28 @@ const FeedbackContent: React.FC = () => {
             </div>
 
             {loadingFeedback ? (
-              <p>Loading...</p>
+              <p className="text-center text-base text-blue-500 mt-5">Loading...</p>
             ) : filteredFeedbacks.length > 0 ? (
-              <table className={styles.table}>
+              <table className="w-full border-collapse mt-2.5">
                 <thead>
                   <tr>
-                    <th>Fullname</th>
-                    <th>Email</th>
-                    <th>Rating</th>
-                    <th>Comment</th>
-                    <th>Created At</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Fullname</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Email</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Rating</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Comment</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Created At</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Status</th>
+                    <th className="p-2.5 border border-gray-300 text-center bg-gray-100 font-bold">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   {filteredFeedbacks.map((fb) => (
-                    <tr key={fb._id} className={fb.isHided ? styles.hiddenRow : ""}>
-                      <td>{fb.userId.fullname}</td>
-                      <td>{fb.userId.email}</td>
-                      <td>⭐ {fb.rating}</td>
-                      <td>{fb.comment}</td>
-                      <td>
+                    <tr key={fb._id} className={fb.isHided ? "bg-gray-50 text-gray-400" : ""}>
+                      <td className="p-2.5 border border-gray-300 text-center">{fb.userId.fullname}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">{fb.userId.email}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">⭐ {fb.rating}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">{fb.comment}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">
                         {new Date(fb.createdAt).toLocaleDateString("vi-VN", {
                           day: "2-digit",
                           month: "2-digit",
@@ -202,10 +199,10 @@ const FeedbackContent: React.FC = () => {
                           minute: "2-digit",
                         })}
                       </td>
-                      <td>{fb.isHided ? "Hidden" : "Showing"}</td>
-                      <td>
+                      <td className="p-2.5 border border-gray-300 text-center">{fb.isHided ? "Hidden" : "Showing"}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">
                         <button
-                          className={styles.pageButton}
+                          className="py-2 px-3 border-none rounded-lg bg-amber-400 text-white cursor-pointer transition-colors duration-200 hover:bg-amber-500"
                           onClick={() => toggleVisibility(fb._id)}
                         >
                           {fb.isHided ? "Show" : "Hide"}
@@ -216,17 +213,20 @@ const FeedbackContent: React.FC = () => {
                 </tbody>
               </table>
             ) : (
-              <p>No feedback yet</p>
+              <p className="text-center text-base text-gray-500 mt-5">No feedback yet</p>
             )}
 
-            <button className={styles.closeButton} onClick={() => setSelectedDish(null)}>
+            <button
+              className="absolute top-2.5 right-2.5 bg-transparent border-none text-lg cursor-pointer text-gray-700"
+              onClick={() => setSelectedDish(null)}
+            >
               X
             </button>
           </div>
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FeedbackContent;
+export default FeedbackContent

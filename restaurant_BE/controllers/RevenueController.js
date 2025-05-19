@@ -243,12 +243,16 @@ exports.getBillDetails = async (req, res) => {
 exports.printBill = async (req, res) => {
     try {
         const { id } = req.params;
+        const { fields } = req.body; // lấy trực tiếp từ body
+
+        // Nếu client gửi fields thì dùng, nếu không thì in tất cả
+        const allowedFields = Array.isArray(fields) ? fields : [];
 
         const order = await Order.findById(id)
             .populate({
                 path: "bookingId",
                 select: "orderType bookingDate status tableId",
-                populate: { // Populate thêm thông tin Table
+                populate: {
                     path: "tableId",
                     model: "Table",
                     select: "tableNumber capacity"
@@ -256,26 +260,22 @@ exports.printBill = async (req, res) => {
             })
             .populate({
                 path: "userId",
-                select: "fullname",
+                select: "fullname"
             });
 
-        if (!order) {
-            return res.status(404).send("<h3>Không tìm thấy đơn hàng!</h3>");
-        }
-
-        if (!order.bookingId) {
-            return res.status(400).send("<h3>Đơn hàng không có bookingId!</h3>");
+        if (!order || !order.bookingId) {
+            return res.status(404).send("<h3>Không tìm thấy đơn hàng hoặc booking!</h3>");
         }
 
         const items = await BookingDish.find({ bookingId: order.bookingId._id })
             .populate({
                 path: "dishId",
-                select: "name price imageUrl",
+                select: "name price imageUrl"
             });
 
         let totalAmount = 0;
         let itemRows = items.map((item, index) => {
-            const quantity = item.quantity || 1; // Nếu không có quantity, mặc định là 1
+            const quantity = item.quantity || 1;
             const itemTotal = quantity * item.dishId.price;
             totalAmount += itemTotal;
             return `<tr>
@@ -286,6 +286,9 @@ exports.printBill = async (req, res) => {
                         <td>${itemTotal.toLocaleString()} VND</td>
                     </tr>`;
         }).join("");
+
+        // chỉ hiển thị nếu nằm trong allowedFields hoặc allowedFields rỗng (mặc định in hết)
+        const showField = (field) => allowedFields.length === 0 || allowedFields.includes(field);
 
         const billHtml = `
             <html>
@@ -300,44 +303,100 @@ exports.printBill = async (req, res) => {
                 </style>
             </head>
             <body>
-                <h2>Hóa Đơn</h2>
+                <h2>Ambrosia</h2>
                 <div class="info-section">
+                <p><span class="label">ID: </span> ${order.id}</p>
                     <p><span class="label">Khách hàng:</span> ${order.userId.fullname}</p>
-                    <p><span class="label">Ngày đặt:</span> ${new Date(order.bookingId.bookingDate).toLocaleString()}</p>
-                    <p><span class="label">Loại đơn hàng:</span> ${order.bookingId.orderType}</p>
-                    <p><span class="label">Trạng thái:</span> ${order.bookingId.status}</p>
-                    <p><span class="label">Mã đơn hàng:</span> ${order._id}</p>
-                    ${order.bookingId.tableId ? `<p><span class="label">Số bàn:</span> ${order.bookingId.tableId.tableNumber} (Sức chứa: ${order.bookingId.tableId.capacity})</p>` : ""}
-                    <p><span class="label">Số tiền đã trả trước:</span> ${order.prepaidAmount.toLocaleString()} VND</p>
-                    <p><span class="label">Phương thức thanh toán:</span> ${order.paymentMethod || "Chưa xác định"}</p>
-                    <p><span class="label">Trạng thái thanh toán:</span> ${order.paymentStatus || "Chưa xác định"}</p>
-                    <p><span class="label">Ngày tạo đơn:</span> ${new Date(order.createdAt).toLocaleString()}</p>
+                    ${showField("bookingDate") ? `<p><span class="label">Ngày đặt:</span> ${new Date(order.bookingId.bookingDate).toLocaleString()}</p>` : ""}
+                    ${showField("orderType") ? `<p><span class="label">Loại đơn hàng:</span> ${order.bookingId.orderType}</p>` : ""}
+                    ${showField("status") ? `<p><span class="label">Trạng thái:</span> ${order.bookingId.status}</p>` : ""}
+                    ${showField("orderId") ? `<p><span class="label">Mã đơn hàng:</span> ${order._id}</p>` : ""}
+                    ${showField("tableInfo") && order.bookingId.tableId ? `<p><span class="label">Số bàn:</span> ${order.bookingId.tableId.tableNumber} (Sức chứa: ${order.bookingId.tableId.capacity})</p>` : ""}
+                    ${showField("prepaidAmount") ? `<p><span class="label">Số tiền đã trả trước:</span> ${order.prepaidAmount.toLocaleString()} VND</p>` : ""}
+                    ${showField("paymentMethod") ? `<p><span class="label">Phương thức thanh toán:</span> ${order.paymentMethod || "Chưa xác định"}</p>` : ""}
+                    ${showField("paymentStatus") ? `<p><span class="label">Trạng thái thanh toán:</span> ${order.paymentStatus || "Chưa xác định"}</p>` : ""}
+                    ${showField("createdAt") ? `<p><span class="label">Ngày tạo đơn:</span> ${new Date(order.createdAt).toLocaleString()}</p>` : ""}
                 </div>
-                <table>
-                    <tr>
-                        <th>#</th>
-                        <th>Món</th>
-                        <th>Số lượng</th>
-                        <th>Đơn giá</th>
-                        <th>Thành tiền</th>
-                    </tr>
-                    ${itemRows}
-                    <tr>
-                        <td colspan="4"><strong>Tổng tiền</strong></td>
-                        <td><strong>${totalAmount.toLocaleString()} VND</strong></td>
-                    </tr>
-                </table>
-                <script>
-                    window.onload = function() {
-                        window.print();
-                    };
-                </script>
+    
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Món</th>
+                            <th>Số lượng</th>
+                            <th>Đơn giá</th>
+                            <th>Thành tiền</th>
+                        </tr>
+                        ${itemRows}
+                        <tr>
+                            <td colspan="4"><strong>Tổng tiền</strong></td>
+                            <td><strong>${totalAmount.toLocaleString()} VND</strong></td>
+                        </tr>
+                    </table>
             </body>
-            </html>`;
+            <script>
+    window.onload = function() {
+        window.print();
+    };
+</script>
+            </html>
+        `;
 
         res.send(billHtml);
     } catch (error) {
-        console.error("Lỗi in hóa đơn:", error);
+        console.error("Lỗi khi in hóa đơn:", error);
         res.status(500).send("<h3>Lỗi khi in hóa đơn!</h3>");
     }
 };
+
+const InvoiceTemplate = require("../models/InvoiceTemplate");
+
+exports.saveTemplate = async (req, res) => {
+    const { name, fields } = req.body;
+  
+    if (!name || name.trim() === "") {
+      return res.status(400).json({ message: "Tên mẫu không được để trống" });
+    }
+  
+    try {
+      const template = await InvoiceTemplate.findOneAndUpdate(
+        { name },
+        { $set: { fields } },
+        { upsert: true, new: true }
+      );
+  
+      res.status(200).json({ message: "Lưu mẫu thành công", template });
+    } catch (error) {
+      console.error("Lỗi lưu mẫu:", error);
+      res.status(500).json({ message: "Lỗi khi lưu mẫu", error: error.message });
+    }
+  };
+  
+
+// Lấy tất cả mẫu để chọn (không cần userId)
+exports.getTemplates = async (req, res) => {
+  try {
+    const templates = await InvoiceTemplate.find().select("name fields -_id");
+    res.json({ templates });
+  } catch (error) {
+    console.error("Lỗi lấy mẫu:", error);
+    res.status(500).json({ message: "Lỗi server" });
+  }
+};
+
+exports.deleteTemplate = async (req, res) => {
+    const { name } = req.params;
+    if (!name) {
+      return res.status(400).json({ message: "Tên mẫu không được để trống" });
+    }
+  
+    try {
+      const deleted = await InvoiceTemplate.findOneAndDelete({ name });
+      if (!deleted) {
+        return res.status(404).json({ message: "Không tìm thấy mẫu để xóa" });
+      }
+      return res.json({ message: `Đã xóa mẫu '${name}' thành công` });
+    } catch (error) {
+      console.error("Lỗi xóa mẫu:", error);
+      return res.status(500).json({ message: "Lỗi máy chủ khi xóa mẫu" });
+    }
+  };

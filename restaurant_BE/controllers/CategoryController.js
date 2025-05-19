@@ -3,7 +3,7 @@ const Dish = require("../models/Dish");
 
 exports.getAllCategories = async (req, res) => {
     try {
-        const categories = await Category.find(); // Lấy toàn bộ danh mục
+        const categories = await Category.find(); // Get all categories
 
         return res.status(200).json({
             message: "Categories retrieved successfully.",
@@ -22,7 +22,7 @@ exports.createCategory = async (req, res) => {
     try {
         const { name, description } = req.body;
 
-        // Kiểm tra xem danh mục đã tồn tại chưa
+        // Check if the category already exists
         const existingCategory = await Category.findOne({ name });
         if (existingCategory) {
             return res.status(400).json({
@@ -55,7 +55,7 @@ exports.updateCategory = async (req, res) => {
         const category = await Category.findById(id);
         if (!category) {
             return res.status(404).json({
-                message: "Không tìm thấy danh mục.",
+                message: "Category not found.",
                 success: false
             });
         }
@@ -66,14 +66,14 @@ exports.updateCategory = async (req, res) => {
         await category.save();
 
         return res.status(200).json({
-            message: "Cập nhật danh mục thành công.",
+            message: "Category updated successfully.",
             success: true,
             category
         });
     } catch (error) {
-        console.error("Lỗi khi cập nhật danh mục:", error);
+        console.error("Error updating category:", error);
         return res.status(500).json({
-            message: "Lỗi máy chủ.",
+            message: "Server error.",
             success: false
         });
     }
@@ -86,17 +86,16 @@ exports.hideCategory = async (req, res) => {
         const category = await Category.findById(id);
         if (!category) {
             return res.status(404).json({
-                message: "Không tìm thấy danh mục.",
+                message: "Category not found.",
                 success: false
             });
         }
 
-        
         if (!category.isHidden) {
             const dishesCount = await Dish.countDocuments({ categoryId: id });
             if (dishesCount > 0) {
                 return res.status(400).json({
-                    message: `Có ${dishesCount} món ăn thuộc danh mục này.`,
+                    message: `There are ${dishesCount} dishes under this category.`,
                     success: false
                 });
             }
@@ -106,14 +105,14 @@ exports.hideCategory = async (req, res) => {
         await category.save();
 
         return res.status(200).json({
-            message: `Danh mục đã được ${category.isHidden ? "ẩn" : "hiển thị"} thành công.`,
+            message: `Category has been successfully ${category.isHidden ? "hidden" : "shown"}.`,
             success: true,
             category
         });
     } catch (error) {
-        console.error("Lỗi khi ẩn danh mục:", error);
+        console.error("Error hiding category:", error);
         return res.status(500).json({
-            message: "Lỗi máy chủ.",
+            message: "Server error.",
             success: false
         });
     }
