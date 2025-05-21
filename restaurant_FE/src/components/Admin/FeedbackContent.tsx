@@ -52,14 +52,14 @@ const FeedbackContent: React.FC = () => {
     fetch(apiUrl)
       .then((res) => res.json())
       .then((data) => setDishes(Array.isArray(data) ? data : []))
-      .catch((error) => console.error("Lỗi khi tải món ăn:", error))
+      .catch((error) => console.error("Error loading dishes:", error))
   }
 
   const fetchCategories = () => {
     fetch("http://localhost:3000/category/all")
       .then((res) => res.json())
       .then((data) => setCategories(Array.isArray(data.categories) ? data.categories : []))
-      .catch((error) => console.error("Lỗi khi tải danh mục:", error))
+      .catch((error) => console.error("Error loading categories:", error))
   }
 
   const fetchFeedbacks = (dishId: string) => {
@@ -85,16 +85,16 @@ const FeedbackContent: React.FC = () => {
         headers: { "Content-Type": "application/json" },
       })
 
-      if (!response.ok) throw new Error("Lỗi khi cập nhật trạng thái feedback")
+      if (!response.ok) throw new Error("Failed to update feedback visibility")
 
       const data = await response.json()
 
       setFeedbacks((prev) => prev.map((fb) => (fb._id === id ? { ...fb, isHided: data.feedback.isHided } : fb)))
 
-      alert(data.feedback.isHided ? "Feedback đã được ẩn thành công!" : "Feedback đã được hiển thị lại!")
+      alert(data.feedback.isHided ? "Feedback has been hidden successfully!" : "Feedback is now visible!")
     } catch (error) {
-      console.error("Lỗi khi cập nhật trạng thái:", error)
-      alert("Đã xảy ra lỗi khi cập nhật trạng thái feedback!")
+      console.error("Error updating visibility:", error)
+      alert("An error occurred while updating feedback visibility!")
     }
   }
 
@@ -107,7 +107,7 @@ const FeedbackContent: React.FC = () => {
         value={selectedCategory}
         onChange={(e) => setSelectedCategory(e.target.value)}
       >
-        <option value="">All Category</option>
+        <option value="">All Categories</option>
         {categories.map((category) => (
           <option key={category._id} value={category._id}>
             {category.name}
@@ -150,7 +150,7 @@ const FeedbackContent: React.FC = () => {
             className="bg-white w-[95%] max-w-[1100px] rounded-2xl p-6 relative shadow-lg max-h-[85vh] overflow-y-auto z-[1100]"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-2xl font-bold text-center mb-4">Feedback of {selectedDish.name}</h2>
+            <h2 className="text-2xl font-bold text-center mb-4">Feedback for {selectedDish.name}</h2>
 
             <div className="flex justify-center items-center gap-2.5 mb-5">
               <label>Filter by Rating:</label>
@@ -162,7 +162,7 @@ const FeedbackContent: React.FC = () => {
                 <option value="">All</option>
                 {[1, 2, 3, 4, 5].map((star) => (
                   <option key={star} value={star}>
-                    {star} star
+                    {star} star{star > 1 ? "s" : ""}
                   </option>
                 ))}
               </select>
@@ -191,7 +191,7 @@ const FeedbackContent: React.FC = () => {
                       <td className="p-2.5 border border-gray-300 text-center">⭐ {fb.rating}</td>
                       <td className="p-2.5 border border-gray-300 text-center">{fb.comment}</td>
                       <td className="p-2.5 border border-gray-300 text-center">
-                        {new Date(fb.createdAt).toLocaleDateString("vi-VN", {
+                        {new Date(fb.createdAt).toLocaleDateString("en-GB", {
                           day: "2-digit",
                           month: "2-digit",
                           year: "numeric",
@@ -199,7 +199,7 @@ const FeedbackContent: React.FC = () => {
                           minute: "2-digit",
                         })}
                       </td>
-                      <td className="p-2.5 border border-gray-300 text-center">{fb.isHided ? "Hidden" : "Showing"}</td>
+                      <td className="p-2.5 border border-gray-300 text-center">{fb.isHided ? "Hidden" : "Visible"}</td>
                       <td className="p-2.5 border border-gray-300 text-center">
                         <button
                           className="py-2 px-3 border-none rounded-lg bg-amber-400 text-white cursor-pointer transition-colors duration-200 hover:bg-amber-500"
@@ -213,7 +213,7 @@ const FeedbackContent: React.FC = () => {
                 </tbody>
               </table>
             ) : (
-              <p className="text-center text-base text-gray-500 mt-5">No feedback yet</p>
+              <p className="text-center text-base text-gray-500 mt-5">No feedback available</p>
             )}
 
             <button
