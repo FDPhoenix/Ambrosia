@@ -192,69 +192,69 @@ function IngredientContent() {
   }
 
   return (
-    <div className={styles.contentContainer}>
-      <div className={styles.contentTitle}>
-        <h3>List of Ingredients</h3>
+    <div className="max-w-6xl mx-auto bg-white p-6 rounded-xl shadow-md">
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-xl font-semibold">List of Ingredients</h3>
         <div>
           <select
             value={filterType}
             onChange={handleFilterChange}
-            style={{ marginRight: '10px', padding: '5px' }}
+            className="mr-3 px-3 py-1 border border-gray-300 rounded-md"
           >
             <option value="">All Types</option>
             {INGREDIENT_TYPES.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
+              <option key={type} value={type}>{type}</option>
             ))}
           </select>
-          <button onClick={() => { setShowForm(true); setIsEditing(false); }}>Add New</button>
+          <button
+            onClick={() => { setShowForm(true); setIsEditing(false); }}
+            className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition"
+          >
+            Add New
+          </button>
         </div>
       </div>
 
-      <div className={styles.mainContent}>
+      <div className="overflow-auto max-h-[475px]">
         {ingredients.length === 0 ? (
-          <p>No ingredients found.</p>
+          <p className="text-center">No ingredients found.</p>
         ) : (
-          <table className={styles.dishTable}>
-            <thead>
+          <table className="w-full text-center">
+            <thead className="bg-gray-100">
               <tr>
-                <th>No</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantity</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th className="p-4">No</th>
+                <th className="p-4">Name</th>
+                <th className="p-4">Description</th>
+                <th className="p-4">Quantity</th>
+                <th className="p-4">Type</th>
+                <th className="p-4">Status</th>
+                <th className="p-4">Action</th>
               </tr>
             </thead>
             <tbody>
               {ingredients.map((ingredient, index) => (
-                <tr key={ingredient._id}>
-                  <td>{index + 1}</td>
-                  <td>{ingredient.name}</td>
-                  <td>{ingredient.description || '-'}</td>
-                  <td>{ingredient.quantity}</td>
-                  <td>{ingredient.type || '-'}</td>
-                  <td>
-                    <div style={{ width: '106px', margin: '0 auto' }}>
-                      <StatusBadge
-                        status={ingredient.status === 'Available'}
-                        caseTrue="Available"
-                        caseFalse="Unavailable"
-                      />
-                    </div>
+                <tr key={ingredient._id} className="border-b">
+                  <td className="p-3">{index + 1}</td>
+                  <td className="p-3">{ingredient.name}</td>
+                  <td className="p-3">{ingredient.description || '-'}</td>
+                  <td className="p-3">{ingredient.quantity}</td>
+                  <td className="p-3">{ingredient.type || '-'}</td>
+                  <td className="p-3">
+                    <StatusBadge
+                      status={ingredient.status === 'Available'}
+                      caseTrue="Available"
+                      caseFalse="Unavailable"
+                    />
                   </td>
-                  <td>
+                  <td className="p-3">
                     <button
-                      className={styles.actionButton}
-                      style={{ marginRight: '10px' }}
+                      className="text-lg mr-3 hover:text-orange-500 transition"
                       onClick={() => handleEditIngredient(ingredient)}
                     >
                       <FaEdit />
                     </button>
                     <button
-                      className={styles.actionButton}
+                      className="text-lg hover:text-orange-500 transition"
                       onClick={() => handleHideIngredient(ingredient._id)}
                     >
                       {ingredient.status === 'Available' ? <FaEyeSlash /> : <FaEye />}
@@ -268,75 +268,30 @@ function IngredientContent() {
       </div>
 
       {showForm && (
-        <div className={styles.overlay}>
-          <div className={styles.formContainer}>
-            <div className={styles.formHeader}>
-              <h3>{isEditing ? 'Edit Ingredient' : 'Add New Ingredient'}</h3>
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 w-[400px]">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">
+                {isEditing ? 'Edit Ingredient' : 'Add New Ingredient'}
+              </h3>
               <button onClick={() => { setShowForm(false); resetForm(); }}>
                 <FaTimes />
               </button>
             </div>
-
-            <div className={styles.formContent}>
-              <div className={styles.formFields}>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Ingredient Name"
-                  value={ingredientData.name}
-                  onChange={handleInputChange}
-                  required
-                />
-                <select
-                  name="dishId"
-                  value={ingredientData.dishId}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">-- Select Dish --</option>
-                  {dishes.map((dish) => (
-                    <option key={dish._id} value={dish._id}>
-                      {dish.name}
-                    </option>
-                  ))}
-                </select>
-                <select
-                  name="type"
-                  value={ingredientData.type || ''}
-                  onChange={handleInputChange}
-                >
-                  <option value="">-- Select Type --</option>
-                  {INGREDIENT_TYPES.map((type) => (
-                    <option key={type} value={type}>
-                      {type}
-                    </option>
-                  ))}
-                </select>
-
-                <input
-                  className={styles.noSpinner}
-                  type="number"
-                  name="quantity"
-                  placeholder="Quantity"
-                  value={ingredientData.quantity}
-                  onChange={handleInputChange}
-                  min="0"
-                  required
-                />
-
-                <textarea
-                  className={styles.textarea}
-                  name="description"
-                  placeholder="Description"
-                  value={ingredientData.description}
-                  onChange={handleInputChange}
-                />
-                
-                <button onClick={handleAddOrUpdateIngredient}>
-                  {isEditing ? 'Update Ingredient' : 'Add Ingredient'}
-                </button>
-              </div>
-            </div>
+            <input className="w-full mb-2 px-3 py-2 border rounded" name="name" placeholder="Ingredient Name" value={ingredientData.name} onChange={handleInputChange} />
+            <select className="w-full mb-2 px-3 py-2 border rounded" name="dishId" value={ingredientData.dishId} onChange={handleInputChange}>
+              <option value="">Select Dish</option>
+              {dishes.map((dish) => <option key={dish._id} value={dish._id}>{dish.name}</option>)}
+            </select>
+            <select className="w-full mb-2 px-3 py-2 border rounded" name="type" value={ingredientData.type || ''} onChange={handleInputChange}>
+              <option value="">Select Type</option>
+              {INGREDIENT_TYPES.map((type) => <option key={type}>{type}</option>)}
+            </select>
+            <input type="number" className="w-full mb-2 px-3 py-2 border rounded" name="quantity" placeholder="Quantity" value={ingredientData.quantity} onChange={handleInputChange} />
+            <textarea className="w-full mb-3 px-3 py-2 border rounded h-20" name="description" placeholder="Description" value={ingredientData.description} onChange={handleInputChange}></textarea>
+            <button className="w-full bg-orange-500 text-white py-2 rounded hover:bg-orange-600" onClick={handleAddOrUpdateIngredient}>
+              {isEditing ? 'Update' : 'Add'} Ingredient
+            </button>
           </div>
         </div>
       )}

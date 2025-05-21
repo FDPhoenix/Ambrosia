@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaGoogle, FaFacebook, FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaGoogle, FaFacebook, FaEye, FaEyeSlash, FaGithub, FaLinkedinIn } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 import FormModal from '../pages/common/form-modal';
 import axios from 'axios';
-import styles from '../CSS/Login.module.css';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 
@@ -162,76 +161,113 @@ const Login = () => {
     }
   };
 
-
   return (
-    <div className={styles.loginContainer}>
-      <form className={styles.loginForm} onSubmit={handleSubmit} autoComplete="off">
-        <h2>Login</h2>
-        {error && <p className={styles.errorMessage}>{error}</p>}
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email"
-            autoComplete="off"
-            disabled={loading}
-          />
-        </div>
-        <div className={`${styles.formGroup} ${styles.passwordGroup}`}>
-          <label htmlFor="password">Password:</label>
-          <div className={styles.passwordInputIontainer}>
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter your password"
-              autoComplete="off"
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="flex w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-xl">
+        {/* Left Panel - Login Form */}
+        <div className="w-1/2 p-8">
+          <h2 className="text-2xl font-bold mb-8 text-gray-800">Login</h2>
+          {error && <p className="text-red-500 text-sm mb-4 text-center">{error}</p>}
+          
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <div className="mb-5">
+              <input
+                type="email"
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                autoComplete="off"
+                disabled={loading}
+              />
+            </div>
+            
+            <div className="mb-5 relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                autoComplete="off"
+                disabled={loading}
+              />
+              <span
+                className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
+            
+            <div className="text-center text-sm mb-4">
+              <a href="#" onClick={() => navigate('/forgot-password')} className="text-gray-500 hover:text-gray-700">
+                Forgot password?
+              </a>
+            </div>
+            
+            <button 
+              type="submit" 
+              className="w-full py-3.5 px-4 bg-[#a68a64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#8b7355] focus:outline-none focus:ring-2 focus:ring-[#a68a64] focus:ring-offset-2"
               disabled={loading}
-            />
-            <span
-              className={styles.passwordToggleIcon}
-              onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
-            </span>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+          
+          <div className="flex items-center my-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-gray-200"></div>
+            <span className="px-4 text-sm text-gray-500 font-medium">or login with</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
+          </div>
+          
+          <div className="flex justify-center gap-3 mb-4">
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#db4437] transition-all duration-300 hover:bg-gray-200"
+              onClick={handleLoginGoogle}
+              disabled={loading}
+            >
+              <FaGoogle />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#1877f2] transition-all duration-300 hover:bg-gray-200"
+              onClick={handleLoginFacebook}
+              disabled={loading}
+            >
+              <FaFacebook />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:bg-gray-200"
+              disabled={loading}
+            >
+              <FaGithub />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#0077b5] transition-all duration-300 hover:bg-gray-200"
+              disabled={loading}
+            >
+              <FaLinkedinIn />
+            </button>
           </div>
         </div>
-        <button type="submit" className={styles.loginButton} disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-
-        <div className={styles.divider}>
-          <span>Or login with</span>
-        </div>
-        <div className={styles.socialButtons}>
-          <button type="button" className={`${styles.socialButton} ${styles.google}`} disabled={loading}
-            onClick={() => handleLoginGoogle()}
+        
+        {/* Right Panel - Welcome Section */}
+        <div className="w-1/2 p-8 flex flex-col justify-center items-center text-white text-center" style={{ backgroundColor: '#a68a64' }}>
+          <h1 className="text-3xl font-bold mb-2">Hello, Welcome!</h1>
+          <p className="text-sm mb-8 opacity-90">Don't have an account?</p>
+          <button 
+            onClick={() => navigate('/register')}
+            className="py-2.5 px-6 rounded-lg font-medium border-2 border-white transition-all duration-300 hover:bg-white hover:bg-opacity-10"
           >
-            <FaGoogle className="icon" /> Google
-          </button>
-          
-          <button
-            type="button"
-            className={`${styles.socialButton} ${styles.facebook}`}
-            disabled={loading}
-            onClick={handleLoginFacebook}
-          >
-            <FaFacebook className="icon" /> Facebook
+            Register
           </button>
         </div>
-        <p className={styles.registerLink}>
-          Don't have an account? <a href="/register">Register here</a>
-        </p>
-
-        {/* Forgot Password link */}
-        <p className={styles.forgotPasswordLink}>
-          <a href="#" onClick={() => navigate('/forgot-password')}>Forgot Password?</a>
-        </p>
-      </form>
+      </div>
+      
       {isOtpFormOpen && (
         <FormModal
           handleClose={handleFormModalClose}

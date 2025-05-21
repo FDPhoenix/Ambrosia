@@ -1,365 +1,106 @@
-/* Cải thiện phần tổng thể container */
+/* Tailwind CSS equivalent classes (Improved Styling) */
+
 .contentContainer {
-    width: 1200px;
-    height: 567px;
-    padding: 25px 40px; /* Tăng padding để tạo không gian thoáng đãng */
-    max-width: 1210px;
-    background-color: #fff;
-    border-radius: 20px; /* Bo góc mềm mại hơn */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Thêm shadow để tạo chiều sâu */
-    transition: transform 0.3s ease-in-out;
+  @apply max-w-6xl mx-auto bg-white p-8 rounded-xl shadow-lg;
 }
 
-/* .contentContainer:hover {
-    transform: scale(1.02); 
-} */
-
-/* Cải thiện tiêu đề */
 .contentTitle {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px; /* Tăng khoảng cách dưới */
+  @apply flex justify-between items-center mb-6;
 }
 
 .contentTitle h3 {
-    margin: auto 0;
-    font-size: 24px;
-    font-weight: 600; /* Làm cho tiêu đề nổi bật hơn */
-    color: #333;
+  @apply text-2xl font-semibold text-gray-800;
 }
 
 .contentTitle button {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f5f5f5;
-    font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease;
+  @apply px-4 py-2 border border-gray-300 rounded-lg transition duration-200 hover:bg-orange-500 hover:text-white;
 }
 
-.contentTitle button:hover {
-    background-color: #f0924c;
-    color: white;
-}
-
-/* Phần hiển thị nội dung */
 .mainContent {
-    max-height: 475px;
-    overflow-y: auto;
-    padding-right: 10px;
-}
-
-.mainContent::-webkit-scrollbar {
-    width: 5px;
-}
-
-.mainContent::-webkit-scrollbar-thumb {
-    background-color: #ddd;
-    border-radius: 5px;
+  @apply max-h-[475px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-200 scrollbar-thumb-rounded;
 }
 
 .dishTable {
-    width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+  @apply w-full border-collapse;
+}
+
+.dishTable thead {
+  @apply bg-gray-200;
 }
 
 .dishTable tbody tr:last-child td {
-    border-bottom: none;
+  @apply border-b-0;
 }
 
 .dishTable th,
 .dishTable td {
-    padding: 14px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
-    font-size: 16px;
-    color: #333;
-}
-
-.dishTable th {
-    background-color: #f5f5f5;
-    font-weight: bold;
-}
-
-.dishImage {
-    width: 70px;
-    height: 70px;
-    border-radius: 8px; /* Làm tròn các góc ảnh */
-    object-fit: cover;
+  @apply p-4 border-b border-gray-200 text-center;
 }
 
 .actionButton {
-    border: none;
-    background: none;
-    font-size: 20px;
-    cursor: pointer;
-    margin: 0 10px;
-    transition: transform 0.3s ease, color 0.3s ease;
+  @apply bg-transparent text-gray-600 text-xl cursor-pointer mx-2 transition-transform duration-200;
 }
 
 .actionButton:hover {
-    transform: scale(1.3);
-    color: #f0924c;
+  @apply scale-110 text-orange-500;
 }
 
-/* Overlay effect khi form hiện */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+  @apply fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-50;
 }
 
 .formContainer {
-    background: #fff;
-    width: 480px;
-    padding: 30px;
-    border-radius: 12px; /* Bo góc mềm mại hơn */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Thêm shadow để làm nổi bật */
-    transition: transform 0.3s ease;
-}
-
-.formContainer:hover {
-    transform: scale(1.03); /* Phóng to nhẹ khi hover */
+  @apply bg-white w-[480px] p-8 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105;
 }
 
 .formHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  @apply flex justify-between items-center mb-5;
 }
 
 .formHeader button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    color: #999;
-    transition: color 0.3s ease;
-}
-
-.formHeader button:hover {
-    color: #f0924c;
+  @apply bg-transparent text-gray-500 text-xl cursor-pointer transition-colors duration-200 hover:text-orange-500;
 }
 
 .formContent {
-    display: flex;
-    gap: 20px;
+  @apply flex gap-6;
 }
 
 .imageUpload {
-    position: relative;
-    width: 250px;
-    height: 170px;
-    background: #f8f8f8;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: background-color 0.3s ease;
-}
-
-.imageUpload:hover {
-    background: #e9e9e9;
+  @apply relative w-[250px] h-[170px] bg-gray-100 flex items-center justify-center rounded-xl cursor-pointer overflow-hidden transition-colors duration-200 hover:bg-gray-200;
 }
 
 .imageUpload img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  @apply w-full h-full object-cover;
 }
 
 .imageUpload input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
+  @apply absolute inset-0 opacity-0 cursor-pointer;
 }
 
 .formFields {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
+  @apply flex flex-col gap-4 w-full;
 }
 
 .formFields input,
-.formFields select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 16px;
-    transition: border-color 0.3s ease;
-}
-
-.formFields input:focus,
-.formFields select:focus {
-    border-color: #f0924c;
-    outline: none;
+.formFields select,
+.textarea {
+  @apply w-full p-3 border border-gray-300 rounded-lg text-base transition duration-200 focus:border-orange-500 focus:outline-none;
 }
 
 .formFields button {
-    background-color: #f0924c;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+  @apply bg-orange-500 text-white p-3 rounded-lg cursor-pointer transition duration-200 hover:bg-orange-600;
 }
 
-.formFields button:hover {
-    background-color: #d87c3b;
+.textarea {
+  @apply h-24;
 }
 
-/* Spinner reset */
 .noSpinner::-webkit-outer-spin-button,
 .noSpinner::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .noSpinner {
-    -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
-
-/* Các hiệu ứng nút icon */
-.addIconButton {
-    border: none;
-    padding: 12px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: color 0.3s ease, background-color 0.3s ease;
-}
-
-.addIconButton:hover {
-    background-color: #f1f1f1;
-}
-
-.addIconButton svg {
-    width: 24px;
-    height: 24px;
-    transition: transform 0.3s ease;
-}
-
-.addIconButton:hover svg {
-    transform: rotate(360deg);
-}
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Nền mờ */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContainer {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 90%;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  text-align: center;
-}
-
-.modalButtons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.modalButton {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #007bff;
-  color: #fff;
-  transition: background-color 0.3s;
-}
-
-.modalButton:hover {
-  background-color: #0056b3;
-}
-.modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7); /* Màu nền đậm hơn */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
-  .modalContainer {
-    background: #fff;
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    width: 90%;
-    text-align: center;
-  }
-  
-  .modalContainer p {
-    font-size: 18px;
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  .modalButtons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .modalButton {
-    padding: 12px 30px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  
-  .modalButton:first-child {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  .modalButton:first-child:hover {
-    background-color: #218838;
-  }
-  
-  .modalButton:last-child {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  .modalButton:last-child:hover {
-    background-color: #c82333;
-  }
-  

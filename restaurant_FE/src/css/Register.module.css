@@ -1,87 +1,158 @@
-.registerFormContainer {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border: 1px solid #e2e8f0;
-  border-radius: 0.5rem;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .registerFormContainer {
+    @apply max-w-md mx-auto my-12 p-8 bg-[#fcfaf7] rounded-xl shadow-[0_15px_35px_rgba(0,0,0,0.08)] border border-[#e8e0d8];
+    background-image: linear-gradient(to bottom right, rgba(252, 250, 247, 0.8), rgba(245, 240, 235, 0.8));
+  }
+
+  .registerTitle {
+    @apply text-center text-3xl font-bold mb-2 text-[#5d4037];
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.5);
+  }
+
+  .registerSubtitle {
+    @apply text-center text-[#8d6e63] mb-8 text-sm font-medium;
+  }
+
+  .formGroup {
+    @apply mb-5;
+  }
+
+  .label {
+    @apply block mb-1.5 font-medium text-[#5d4037] text-sm pl-1;
+  }
+
+  .inputField {
+    @apply w-full px-4 py-3.5 bg-white border-0 rounded-lg text-[#3e2723] text-base shadow-sm ring-1 ring-[#d7ccc8] focus:outline-none focus:ring-2 focus:ring-[#a1887f] transition-all duration-200;
+  }
+
+  .error {
+    @apply text-[#c62828] text-xs mt-1.5 font-medium pl-1;
+  }
+
+  .submitBtn {
+    @apply w-full py-3.5 px-4 mt-2 bg-[#795548] text-[#f5f5f5] font-semibold rounded-lg cursor-pointer text-base transition-all duration-300 shadow-md hover:bg-[#5d4037] focus:outline-none focus:ring-2 focus:ring-[#8d6e63] focus:ring-offset-2;
+  }
+
+  .passwordWrapper {
+    @apply relative flex items-center;
+  }
+
+  .showPasswordBtn {
+    @apply absolute right-3.5 bg-transparent border-none cursor-pointer text-[#a1887f] hover:text-[#5d4037] transition-colors duration-200 focus:outline-none;
+  }
+
+  /* Form section divider with elegant styling */
+  .formDivider {
+    @apply flex items-center my-6;
+  }
+
+  .formDivider::before,
+  .formDivider::after {
+    @apply content-[''] flex-1 h-px;
+    background: linear-gradient(to right, transparent, #d7ccc8);
+  }
+
+  .formDivider::after {
+    background: linear-gradient(to right, #d7ccc8, transparent);
+  }
+
+  .formDivider span {
+    @apply px-4 text-sm text-[#8d6e63] font-medium;
+  }
+
+  /* Social login buttons with luxurious styling */
+  .socialLoginContainer {
+    @apply grid grid-cols-2 gap-4 mb-6;
+  }
+
+  .socialBtn {
+    @apply flex items-center justify-center gap-2 py-3 px-4 bg-white border border-[#e8e0d8] rounded-lg text-[#5d4037] font-medium transition-all duration-200 hover:bg-[#f5f0eb] hover:border-[#d7ccc8] shadow-sm;
+  }
+
+  .socialIcon {
+    @apply w-5 h-5 text-[#8d6e63];
+  }
+
+  /* Checkbox styling with brown tones */
+  .checkboxContainer {
+    @apply flex items-center mb-6;
+  }
+
+  .checkbox {
+    @apply h-5 w-5 rounded border-[#bcaaa4] text-[#795548] focus:ring-[#8d6e63] mr-2;
+  }
+
+  .checkboxLabel {
+    @apply text-sm text-[#6d4c41];
+  }
+
+  .checkboxLabel a {
+    @apply text-[#a1887f] font-medium hover:text-[#795548] underline decoration-[#d7ccc8] underline-offset-2;
+  }
+
+  /* Login link with elegant styling */
+  .loginLinkContainer {
+    @apply text-center mt-6 text-sm text-[#8d6e63];
+  }
+
+  .loginLink {
+    @apply text-[#795548] font-medium hover:text-[#5d4037] underline decoration-[#d7ccc8] underline-offset-2;
+  }
+
+  /* Input with icon - brown tones */
+  .inputWithIcon {
+    @apply relative;
+  }
+
+  .inputIcon {
+    @apply absolute left-3.5 top-1/2 transform -translate-y-1/2 text-[#a1887f];
+  }
+
+  .inputWithIcon .inputField {
+    @apply pl-10;
+  }
+
+  /* Success state */
+  .inputField.success {
+    @apply ring-[#81c784] bg-[#f1f8e9]/50;
+  }
+
+  /* Error state */
+  .inputField.error {
+    @apply ring-[#e57373] bg-[#ffebee]/50;
+  }
+
+  /* Elegant decorative elements */
+  .registerFormContainer::before {
+    @apply content-[''] absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#d7ccc8]/30 to-[#a1887f]/20 rounded-full -z-10 blur-3xl opacity-70;
+  }
+
+  .registerFormContainer::after {
+    @apply content-[''] absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-br from-[#d7ccc8]/30 to-[#a1887f]/20 rounded-full -z-10 blur-3xl opacity-70;
+  }
+
+  .registerFormContainer {
+    @apply relative overflow-hidden;
+  }
+
+  /* Gold accent for premium feel */
+  .goldAccent {
+    @apply h-1 w-16 mx-auto mb-6 rounded-full;
+    background: linear-gradient(to right, #d7ccc8, #bc9b7a, #d7ccc8);
+  }
 }
 
-.registerTitle {
-  text-align: center;
-  color: #2d3748;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.formGroup {
-  margin-bottom: 1.25rem;
-}
-
-.label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-  color: #4a5568;
-}
-
-.inputField {
-  width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #cbd5e0;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  font-size: 1rem;
-  transition: border-color 0.2s ease-in-out;
-}
-
-.inputField:focus {
-  outline: none;
-  border-color: #4299e1;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.2);
-}
-
-.error {
-  color: #e53e3e;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-.submitBtn {
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #4299e1;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.submitBtn:hover {
-  background-color: #3182ce;
-}
-
-.submitBtn:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
-}
-
-.passwordWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.showPasswordBtn {
-  background: none;
-  border: none;
-  position: absolute;
-  right: 10px;
-  cursor: pointer;
-  font-size: 18px;
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .registerFormContainer {
+    @apply mx-4 p-6;
+  }
+  
+  .socialLoginContainer {
+    @apply grid-cols-1;
+  }
 }

@@ -1,357 +1,207 @@
-:root {
-  --primary-color: #a68a64; /* Màu vàng/đồng thay cho xanh dương */
-  --primary-hover: #8b7355; /* Tông đậm hơn khi hover */
-  --form-background: rgba(255, 255, 255, 0.9); /* Nền bán trong trắng */
-  --text-color: #555555; /* Chữ nhạt hơn cho độ tương phản */
-  --border-color: #d9c7a6; /* Viền tông ấm */
-  --error-color: #e74c3c;
-  --success-color: #2ecc71;
-  --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ mạnh hơn */
-  --transition: all 0.3s ease;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary-color: #a68a64; /* Màu vàng/đồng thay cho xanh dương */
+    --primary-hover: #8b7355; /* Tông đậm hơn khi hover */
+    --form-background: rgba(255, 255, 255, 0.9); /* Nền bán trong trắng */
+    --text-color: #555555; /* Chữ nhạt hơn cho độ tương phản */
+    --border-color: #d9c7a6; /* Viền tông ấm */
+    --error-color: #e74c3c;
+    --success-color: #2ecc71;
+    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng đổ mạnh hơn */
+    --transition: all 0.3s ease;
+  }
 }
 
-.loginContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  padding: 2rem;
-  background-image: url('/src/assets/pexels-pixabay-260922.jpg');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative; /* Để thêm lớp phủ */
-}
+@layer components {
+  /* Auth container - holds both login and register forms */
+  .authContainer {
+    @apply flex justify-center items-center min-h-screen p-4 bg-gray-100;
+  }
 
-/* Thêm lớp phủ mờ */
-.loginContainer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.1); /* Lớp mờ nhẹ */
-  z-index: 0;
-}
+  /* Auth card - the main container with both panels */
+  .authCard {
+    @apply flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-xl;
+    min-height: 600px;
+  }
 
-.loginForm {
-  background: var(--form-background);
-  padding: 3.5rem; /* Giữ padding để form không quá cao, tập trung vào chiều ngang */
-  border-radius: 12px;
-  box-shadow: var(--box-shadow);
-  width: 100%;
-  max-width: 580px; /* Tăng max-width từ 520px lên 580px để form rộng hơn theo chiều ngang */
-  transition: var(--transition);
-}
+  /* Left panel */
+  .authLeftPanel {
+    @apply w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-between transition-all duration-500;
+  }
 
-.loginForm:hover {
-  transform: translateY(-5px);
-}
+  /* Right panel - colored side panel */
+  .authRightPanel {
+    @apply w-full md:w-1/2 p-6 md:p-8 flex flex-col justify-center items-center text-white text-center transition-all duration-500;
+    background-color: var(--primary-color);
+  }
 
-.loginForm h2 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-  color: var(--primary-color);
-  font-size: 2.4rem; /* Tăng font-size từ 2.2rem lên 2.4rem để tiêu đề lớn hơn, phù hợp với chiều rộng mới */
-}
+  /* Welcome headings */
+  .welcomeHeading {
+    @apply text-2xl md:text-3xl font-bold mb-2;
+  }
 
-.formGroup {
-  margin-bottom: 1.5rem;
-}
+  .welcomeSubheading {
+    @apply text-sm mb-6 md:mb-8 opacity-90;
+  }
 
-.formGroup label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: var(--text-color);
-}
+  /* Auth form title */
+  .authTitle {
+    @apply text-xl md:text-2xl font-bold mb-6 md:mb-8 text-gray-800;
+  }
 
-.formGroup input {
-  width: 100%;
-  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để input rộng và cao hơn, đồng bộ với chiều ngang lớn hơn */
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  transition: var(--transition);
-}
+  /* Form input fields */
+  .authInput {
+    @apply w-full py-3 px-4 bg-gray-100 border-0 rounded-lg mb-4 text-gray-800 text-base;
+  }
 
-.formGroup input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
+  .authInput:focus {
+    @apply outline-none ring-2;
+    ring-color: var(--primary-color);
+  }
 
-.errorMessage {
-  color: var(--error-color);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-  text-align: center;
-}
+  /* Auth buttons */
+  .authButton {
+    @apply w-full py-3 rounded-lg text-white font-medium transition-all duration-300 mt-2 mb-4;
+    background-color: var(--primary-color);
+  }
 
-.loginButton {
-  width: 100%;
-  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để nút lớn hơn, đồng bộ với input */
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-bottom: 1rem;
-  font-weight: 600;
-  transition: var(--transition);
-}
+  .authButton:hover {
+    background-color: var(--primary-hover);
+  }
 
-.loginButton:hover {
-  background-color: var(--primary-hover);
-}
+  .authOutlineButton {
+    @apply w-full py-2.5 px-4 rounded-lg font-medium border-2 transition-all duration-300;
+    color: var(--primary-color);
+    border-color: white;
+  }
 
-.divider {
-  text-align: center;
-  margin: 1.5rem 0;
-  position: relative;
-  color: #888;
-}
+  .authOutlineButton:hover {
+    @apply bg-white bg-opacity-10;
+  }
 
-.divider span {
-  background: var(--form-background);
-  padding: 0 10px;
-  position: relative;
-  z-index: 2;
-}
-
-.divider:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: var(--border-color);
-  z-index: 1;
-}
-
-.socialButtons {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 1.5rem;
-}
-
-.socialButton {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.2rem; /* Tăng padding từ 1.1rem lên 1.2rem để nút xã hội lớn hơn, đồng bộ với chiều ngang */
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 1.3rem; /* Tăng font-size từ 1.2rem lên 1.3rem để chữ lớn hơn, phù hợp với chiều rộng mới */
-  font-weight: 600;
-  gap: 8px;
-  transition: var(--transition);
-}
-
-.socialButton.google {
-  color: #db4437;
-}
-
-.socialButton.facebook {
-  color: #1877f2;
-}
-
-.socialButton:hover {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
-.registerLink {
-  text-align: center;
-  margin-top: 1.5rem;
-}
-
-.registerLink a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  transition: var(--transition);
-}
-
-.registerLink a:hover {
-  text-decoration: underline;
-}
-
-.passwordGroup {
-  position: relative;
-}
-
-.passwordInputContainer {
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.passwordInputContainer input {
-  padding-right: 40px;
-}
-
-.passwordToggleIcon {
-  position: absolute;
-  top: 52%;
-  right: 12px;
-  cursor: pointer;
-  color: #888;
-  font-size: 1.4rem; /* Tăng font-size từ 1.2rem lên 1.4rem để icon lớn hơn, phù hợp với chiều rộng mới */
-  transition: var(--transition);
-}
-
-.passwordToggleIcon:hover {
-  color: var(--text-color);
-}
-
-@media (max-width: 480px) {
-  .loginForm {
-    padding: 2.5rem; /* Giảm padding trên mobile để form không quá lớn */
-    max-width: 90%; /* Tăng max-width trên mobile để form rộng hơn, nhưng không vượt quá màn hình */
+  /* Social login section */
+  .socialText {
+    @apply text-center text-sm text-gray-500 my-4;
   }
 
   .socialButtons {
-    flex-direction: column;
+    @apply flex justify-center gap-3 mb-4 flex-wrap;
   }
-}
 
-.formGroup input {
-  width: 100%;
-  padding: 1.2rem;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  transition: var(--transition);
-  font-size: 1.1rem; /* Tăng font-size từ 1rem lên 1.1rem để chữ trong input lớn hơn, phù hợp với chiều ngang */
-}
+  .socialButton {
+    @apply w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 transition-all duration-300 hover:bg-gray-200;
+  }
 
-.formGroup input:focus {
-  outline: none;
-  border-color: var(--primary-color);
-  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-}
+  /* Forgot password link */
+  .forgotPasswordLink {
+    @apply text-center text-sm mb-4;
+  }
 
-.formGroup input[type="email"],
-.formGroup input[type="password"] {
-  width: 100%;
-  box-sizing: border-box;
-}
+  .forgotPasswordLink a {
+    @apply text-gray-500 hover:text-[#a68a64] relative inline-block transition-all duration-300 group;
+  }
+  
+  .forgotPasswordLink a::after {
+    @apply content-[''] absolute bottom-0 left-0 w-0 h-0.5 bg-[#a68a64] transition-all duration-300 group-hover:w-full;
+  }
 
-.passwordInputContainer input {
-  padding-right: 40px;
-  box-sizing: border-box;
-}
+  /* Toggle container for switching between login and register */
+  .authToggleContainer {
+    @apply hidden;
+  }
 
-.forgotPasswordLink {
-  text-align: center;
-  margin-top: 1rem;
-}
+  /* When toggle is checked, swap the panels */
+  .authToggleContainer:checked ~ .authCard .authLeftPanel {
+    @apply md:translate-x-full;
+  }
 
-.forgotPasswordLink a {
-  color: var(--primary-color);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 1rem; /* Tăng font-size từ 0.9rem lên 1rem để link lớn hơn, phù hợp với chiều ngang */
-  transition: var(--transition);
-}
+  .authToggleContainer:checked ~ .authCard .authRightPanel {
+    @apply md:-translate-x-full;
+  }
 
-.forgotPasswordLink a:hover {
-  text-decoration: underline;
-}
+  /* Form groups and labels */
+  .authFormGroup {
+    @apply mb-4;
+  }
 
-.forgotPasswordLink a:focus {
-  outline: none;
-  text-decoration: underline;
-}
+  .authLabel {
+    @apply block mb-1.5 text-sm font-medium text-gray-700;
+  }
 
-.forgotPasswordContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-}
+  /* Error messages */
+  .authError {
+    @apply text-[#e74c3c] text-xs mt-1;
+  }
 
-.forgotPasswordForm {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
+  /* Password input container */
+  .passwordContainer {
+    @apply relative;
+  }
 
-.forgotPasswordForm h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-}
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .authCard {
+      @apply flex-col max-w-md mx-auto;
+    }
 
-.forgotPasswordForm p {
-  color: #777;
-  font-size: 16px;
-  margin-bottom: 20px;
-}
+    .authLeftPanel, .authRightPanel {
+      @apply w-full;
+    }
 
-.forgotPasswordForm label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
+    .authRightPanel {
+      @apply py-8;
+    }
 
-.forgotPasswordForm input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
+    /* For mobile toggle between login/register */
+    .authToggleContainer:checked ~ .authCard .authLeftPanel {
+      @apply hidden;
+    }
 
-.forgotPasswordForm input:focus {
-  outline: none;
-  border-color: #007bff;
-}
+    .authToggleContainer:checked ~ .authCard .authRightPanel {
+      @apply block;
+    }
+    
+    /* Adjust spacing for mobile */
+    .socialButtons {
+      @apply gap-2;
+    }
+    
+    .socialButton {
+      @apply w-9 h-9;
+    }
+  }
 
-.forgotPasswordForm .submitButton {
-  width: 100%;
-  padding: 12px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.forgotPasswordForm .submitButton:hover {
-  background-color: #0056b3;
-}
-
-.forgotPasswordForm .message {
-  color: #f00;
-  margin-top: 10px;
-}
-
-.forgotPasswordForm .backToLogin {
-  margin-top: 20px;
-}
-
-.forgotPasswordForm .backToLogin a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 16px;
-}
-
-.forgotPasswordForm .backToLogin a:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 480px) {
-  .forgotPasswordForm {
-    padding: 15px;
+  /* Small mobile devices */
+  @media (max-width: 480px) {
+    .authCard {
+      @apply p-0;
+    }
+    
+    .authLeftPanel, .authRightPanel {
+      @apply p-5;
+    }
+    
+    .authInput, .authButton {
+      @apply py-2.5;
+    }
+  }
+  
+  /* Extra small devices */
+  @media (max-width: 360px) {
+    .socialButtons {
+      @apply gap-1;
+    }
+    
+    .socialButton {
+      @apply w-8 h-8 text-sm;
+    }
+    
+    .authLeftPanel, .authRightPanel {
+      @apply p-4;
+    }
   }
 }

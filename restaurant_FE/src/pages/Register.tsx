@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import FormModal from '../pages/common/form-modal';
-import styles from '../CSS/Register.module.css'
 import { useNavigate } from 'react-router';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub, FaLinkedinIn } from "react-icons/fa";
+
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
     fullName: '',
@@ -17,13 +17,15 @@ const Register: React.FC = () => {
     email: '',
     phoneNumber: '',
     password: '',
-    form: '', // Thêm lỗi chung cho form
+    form: '',
   });
 
   const [otp, setOtp] = useState("");
   const [isOtpFormOpen, setIsOtpFormOpen] = useState(false);
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
   const enterOtpForm = {
     title: "Enter The OTP",
     fields: [
@@ -141,16 +143,14 @@ const Register: React.FC = () => {
 
     setErrors(newErrors);
     return isValid;
-
   };
-
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (validateForm()) {
-      // Nếu form hợp lệ, gửi dữ liệu đến API
       try {
+        setLoading(true);
         const response = await axios.post('http://localhost:3000/auth/register', {
           fullname: formData.fullName,
           email: formData.email,
@@ -161,11 +161,13 @@ const Register: React.FC = () => {
         if (response.data.success) {
           setIsOtpFormOpen(true);
         } else {
-          setErrors({ ...errors, form: response.data.message }); // Cập nhật lỗi từ API
+          setErrors({ ...errors, form: response.data.message });
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        setErrors({ ...errors, form: 'Registration failed. Please try again.' }); // Xử lý lỗi từ server
+        setErrors({ ...errors, form: 'Registration failed. Please try again.' });
+      } finally {
+        setLoading(false);
       }
     } else {
       console.log('Form has errors');
@@ -176,80 +178,147 @@ const Register: React.FC = () => {
     setIsOtpFormOpen(false);
   };
 
+  const handleLoginGoogle = () => {
+    window.location.href = "http://localhost:3000/login/google";
+  };
+
+  const handleLoginFacebook = () => {
+    window.location.href = "http://localhost:3000/facebook";
+  };
+
   return (
-    <div className={styles.registerFormContainer}>
-      <h2 className={styles.registerTitle}>Register</h2>
-
-      <form onSubmit={handleSubmit}>
-        <div className={styles.formGroup}>
-          <label htmlFor="fullName">Full Name</label>
-          <input
-            type="text"
-            className={styles.inputField}
-            id="fullName"
-            name="fullName"
-            value={formData.fullName}
-            onChange={handleChange}
-          />
-          {errors.fullName && <span className="error">{errors.fullName}</span>}
-        </div>
-
-        <div className={styles.formGroup}>
-        <label htmlFor="email" className={styles.label}>Email</label>
-
-          <input
-            type="email"
-            className={styles.inputField}
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <span className="error">{errors.email}</span>}
-        </div>
-
-        <div className={styles.formGroup}>
-          <label htmlFor="phoneNumber">Phone Number</label>
-          <input
-            type="tel"
-            className={styles.inputField}
-            id="phoneNumber"
-            name="phoneNumber"
-            value={formData.phoneNumber}
-            onChange={handleChange}
-          />
-          {errors.phoneNumber && <span className="error">{errors.phoneNumber}</span>}
-        </div>
-
-
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password</label>
-          <div className={styles.passwordWrapper}>
-            <input
-              type={showPassword ? "text" : "password"}
-              className={styles.inputField}
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className={styles.showPasswordBtn}
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+      <div className="flex w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-xl">
+        {/* Left Panel - Registration Form */}
+        <div className="w-1/2 p-8">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">Registration</h2>
+          {errors.form && <p className="text-red-500 text-sm mb-4 text-center">{errors.form}</p>}
+          
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <div className="mb-4">
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={formData.fullName}
+                onChange={handleChange}
+                placeholder="Full Name"
+                disabled={loading}
+              />
+              {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
+            </div>
+            
+            <div className="mb-4">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email"
+                disabled={loading}
+              />
+              {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+            </div>
+            
+            <div className="mb-4">
+              <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Phone Number"
+                disabled={loading}
+              />
+              {errors.phoneNumber && <p className="text-red-500 text-xs mt-1">{errors.phoneNumber}</p>}
+            </div>
+            
+            <div className="mb-5 relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                disabled={loading}
+              />
+              <span
+                className="absolute right-3.5 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+            </div>
+            
+            <button 
+              type="submit" 
+              className="w-full py-3.5 px-4 bg-[#a68a64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#8b7355] focus:outline-none focus:ring-2 focus:ring-[#a68a64] focus:ring-offset-2"
+              disabled={loading}
             >
-              {showPassword ? <FaEyeSlash /> : <FaEye />}
+              {loading ? 'Registering...' : 'Register'}
+            </button>
+          </form>
+          
+          <div className="flex items-center my-6">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent to-gray-200"></div>
+            <span className="px-4 text-sm text-gray-500 font-medium">or register with</span>
+            <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
+          </div>
+          
+          <div className="flex justify-center gap-3">
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#db4437] transition-all duration-300 hover:bg-gray-200"
+              onClick={handleLoginGoogle}
+              disabled={loading}
+            >
+              <FaGoogle />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#1877f2] transition-all duration-300 hover:bg-gray-200"
+              onClick={handleLoginFacebook}
+              disabled={loading}
+            >
+              <FaFacebook />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:bg-gray-200"
+              disabled={loading}
+            >
+              <FaGithub />
+            </button>
+            <button 
+              type="button" 
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#0077b5] transition-all duration-300 hover:bg-gray-200"
+              disabled={loading}
+            >
+              <FaLinkedinIn />
             </button>
           </div>
-          {errors.password && <span className="error">{errors.password}</span>}
         </div>
-
-        <button type="submit" className={styles.submitBtn}>
-          Register
-        </button>
-
-        {errors.form && <span className="error">{errors.form}</span>} {/* Hiển thị lỗi từ server */}
-      </form>
+        
+        {/* Right Panel - Welcome Back Section */}
+        <div className="w-1/2 p-8 flex flex-col justify-center items-center text-white text-center" style={{ backgroundColor: '#a68a64' }}>
+          <h1 className="text-3xl font-bold mb-2">Welcome Back!</h1>
+          <p className="text-sm mb-8 opacity-90">Already have an account?</p>
+          <button 
+            onClick={() => navigate('/login')}
+            className="py-2.5 px-6 rounded-lg font-medium border-2 border-white transition-all duration-300 hover:bg-white hover:bg-opacity-10"
+          >
+            Login
+          </button>
+        </div>
+      </div>
+      
       {isOtpFormOpen && (
         <FormModal
           handleClose={handleFormModalClose}
