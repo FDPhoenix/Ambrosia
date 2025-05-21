@@ -241,7 +241,6 @@ const OrdersList: React.FC<OrdersListProps> = ({ year, month, day, goBack }) => 
               <strong>Customer:</strong> {selectedOrder.userId?.fullname}
             </p>
   
-            {/* Selected fields with checkboxes */}
             {allFields.map((field) => {
               let value: any = ""
               switch (field.key) {
