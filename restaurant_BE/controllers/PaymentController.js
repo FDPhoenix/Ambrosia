@@ -10,7 +10,7 @@ const BookingDish = require("../models/BookingDish");
 exports.createPaymentUrl = async (req, res) => {
     try {
         const orderId = req.query.orderId;
-        
+
         if (!orderId) {
             return res.status(400).json({ error: "Not yet orderId" });
         }
@@ -155,7 +155,7 @@ exports.checkout = async (req, res) => {
         });
     } catch (error) {
         console.error("Error during checkout:", error);
-        
+
         res.status(500).json({
             message: "Internal Server Error",
             success: false,
@@ -167,7 +167,7 @@ exports.checkoutBooking = async (req, res) => {
     try {
         const { bookingId } = req.body;
 
-        // 1. Kiểm tra Booking tồn tại
+        // 1. Kiểm tra Booking tồn tại  
         const booking = await Booking.findById(bookingId);
         if (!booking) {
             return res.status(404).json({
@@ -175,6 +175,8 @@ exports.checkoutBooking = async (req, res) => {
                 success: false,
             });
         }
+
+        console.log("🔍 Booking found:", booking);
 
         // 2. Kiểm tra trạng thái Booking
         if (booking.status !== "pending") {
@@ -197,25 +199,34 @@ exports.checkoutBooking = async (req, res) => {
             });
         }
 
+        console.log("🍽 Booking dishes:", bookingDishes);
+
         // 4. Tính tổng tiền từ BookingDishes
         let totalAmount = 0;
         bookingDishes.forEach((item) => {
-            totalAmount += item.dishId.price * item.quantity; // Lấy giá từ dishId
+            if (item.dishId && item.dishId.price) {
+                totalAmount += item.dishId.price * item.quantity;
+            }
         });
 
         const DEPOSIT_PERCENTAGE = 0.3;
         const prepaidAmount = Math.round(totalAmount * DEPOSIT_PERCENTAGE);
 
+        console.log("💵 Calculated total:", totalAmount, "Prepaid:", prepaidAmount);
+
         // 5. Tạo Order từ Booking
         const order = new Order({
-            userId: booking.userId,
+            userId: booking.userId || null, // Nếu không có userId thì để null
             bookingId: booking._id,
             totalAmount,
             prepaidAmount,
             paymentMethod: "VNPay",
             paymentStatus: "Pending",
         });
+
         await order.save();
+
+        console.log("✅ Order created:", order);
 
         // 6. Trả về response với thông tin Order
         res.status(200).json({
@@ -228,9 +239,13 @@ exports.checkoutBooking = async (req, res) => {
             success: true,
         });
     } catch (error) {
-        console.error("Error creating order from booking:", error);
+        console.error("❌ Error creating order from booking:");
+        console.error("Message:", error.message);
+        console.error("Stack:", error.stack);
+
         res.status(500).json({
             message: "Internal Server Error",
+            error: error.message, // Có thể ẩn trong production
             success: false,
         });
     }
