@@ -332,7 +332,6 @@ const OrdersList: React.FC<OrdersListProps> = ({
               })}
             </div>
 
-            <h3 className="mt-5 text-lg font-bold text-gray-700 text-left border-b-2 border-gray-300 pb-1.5"></h3>
             <table className="w-full border-collapse mt-2.5">
               <thead>
                 <tr>
@@ -397,13 +396,13 @@ const OrdersList: React.FC<OrdersListProps> = ({
               </div>
 
               <button
-                className="flex-1 bg-amber-400 hover:bg-amber-500 text-white py-2.5 px-4 rounded-lg text-base transition"
+                className="flex-1 bg-amber-200 text-black  hover:bg-amber-400  py-2.5 px-4 rounded-lg text-base transition"
                 onClick={handleSaveTemplate}
               >
                 💾 Save template
               </button>
               <button
-                className="flex-1 bg-amber-400 hover:bg-amber-500 text-white py-2.5 px-4 rounded-lg text-base transition disabled:opacity-50"
+                className="flex-1 bg-amber-200 text-black  hover:bg-amber-400 py-2.5 px-4 rounded-lg text-base transition disabled:opacity-50"
                 onClick={handlePrintInvoice}
                 disabled={printing}
               >
