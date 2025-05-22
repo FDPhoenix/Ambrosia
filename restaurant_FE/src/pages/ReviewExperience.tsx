@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import { FaStar } from "react-icons/fa";
-import styles from "../css/ReviewExperience.module.css";
+import styles from "../css/ReviewExperience.module.css"
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from "react-toastify";
 
 interface ReviewExperienceProps {
     bookingId: string;
-    closeModal: () => void; // ✅ Nhận hàm đóng modal từ HomePage
+    closeModal: () => void;
 }
 const ReviewExperience: React.FC<ReviewExperienceProps> = ({ bookingId, closeModal }) => {
-    // const { bookingId } = useParams<{ bookingId: string }>();
     const navigate = useNavigate();
     const [rating, setRating] = useState<number>(5);
     const [hover, setHover] = useState<number | null>(null);
@@ -23,23 +24,25 @@ const ReviewExperience: React.FC<ReviewExperienceProps> = ({ bookingId, closeMod
                 rating,
                 comment,
             });
-            alert("✅ Thank you for your review!");
-            setIsOpen(false);
-            closeModal();
-            navigate("/");
+            toast.success("Thank you for your review!");
+            setTimeout(() => {
+                setIsOpen(false);
+                closeModal();
+                navigate("/");
+            }, 900);
         } catch (error) {
-            console.error("❌ Error submitting review!", error);
-            alert("❌ Review submission failed!");
+            console.error("Error submitting review!", error);
+            toast.error("Review submission failed!");
         }
     };
 
+
     return (
-        isOpen && (
+        <>
+            isOpen && (
             <div className={styles.modalOverlay}>
                 <div className={styles.modalContent}>
                     <h2 className={styles.heading}>Rate Your Experience</h2>
-                    {/* <p><strong>Booking ID:</strong> {bookingId}</p> */}
-
                     <div className={styles.starContainer}>
                         {[1, 2, 3, 4, 5].map((star) => (
                             <FaStar
@@ -76,8 +79,11 @@ const ReviewExperience: React.FC<ReviewExperienceProps> = ({ bookingId, closeMod
                         </button>
                     </div>
                 </div>
+
             </div>
-        )
+            )
+            <ToastContainer theme="colored" />
+        </>
     );
 };
 

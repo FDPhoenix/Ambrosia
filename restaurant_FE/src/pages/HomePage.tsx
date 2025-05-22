@@ -16,6 +16,7 @@ import styles from "../css/PageCss/HomePage.module.css";
 import CartSidebar from "../components/CartSideBar";
 import ChatWidget from "../components/ChatWidget";
 import { ToastContainer } from "react-toastify";
+import { useLocation } from "react-router";
 
 function HomePage() {
   const [isBookingFormModalOpen, setIsBookingFormModalOpen] = useState(false);
@@ -27,6 +28,14 @@ function HomePage() {
   const [isReviewExperienceModalOpen, setIsReviewExperienceModalOpen] = useState(false);
   const [currentBookingId, setCurrentBookingId] = useState<string | null>(null);
   const [isCartOpen, setIsCartOpen] = useState(false)
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.showReviewExperience && location.state?.bookingId) {
+      setCurrentBookingId(location.state.bookingId);
+      setIsReviewExperienceModalOpen(true);
+    }
+  }, [location.state]);
 
   const openReviewBookingModal = (bookingId: string) => {
     if (!bookingId) {
@@ -119,7 +128,7 @@ function HomePage() {
 
   return (
     <div>
-      <Header fixed={true} onCartToggle={toggleCart}/>
+      <Header fixed={true} onCartToggle={toggleCart} />
       <Banner />
       <About openBookingModal={openBookingModal} openSelectDateTimeModal={openSelectDateTimeModal} />
       <FAQ />
@@ -210,7 +219,7 @@ function HomePage() {
         </div>
       ) : null}
 
-      <CartSidebar isOpen={isCartOpen} onClose={toggleCart}/>
+      <CartSidebar isOpen={isCartOpen} onClose={toggleCart} />
       {isCartOpen && <div className={styles.overlay} onClick={toggleCart}></div>}
 
       <Footer />
