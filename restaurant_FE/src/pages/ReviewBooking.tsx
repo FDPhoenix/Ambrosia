@@ -154,42 +154,42 @@ const ReviewBooking: React.FC<ReviewBookingProps> = ({ bookingId, closeModal, op
   const handleConfirmBooking = async () => {
     try {
       console.log("Processing booking for bookingId:", bookingId);
+
       if (isOrderAtRestaurant) {
         const confirmResponse = await axios.put(`http://localhost:3000/bookings/${bookingId}/confirm`);
         console.log("Booking confirmation API response:", confirmResponse.data);
-        if (confirmResponse.data.message.includes("Email hóa đơn đã được gửi")) {
-          toast.success("Booking has been confirmed & email sent!");
-        } else {
-          toast.warning("Booking confirmed, but email not sent!");
-        }
-        setBooking((prev) => (prev ? { ...prev, status: "confirmed" } : prev));
-        closeModal();
+
+        toast.success("Booking has been confirmed!");
+        navigate("/", { state: { bookingId, showReviewExperience: true } });
       } else {
         if (!isVNPaySelected) {
           toast.warning("Vui lòng chọn thanh toán qua VNPay trước khi xác nhận!");
           return;
         }
+
         const checkoutResponse = await axios.post(`http://localhost:3000/payment/checkoutBooking`, {
           bookingId: bookingId,
         });
-        console.log("Order created successfully:", checkoutResponse.data);
         const { orderId } = checkoutResponse.data;
-        const confirmResponse = await axios.put(`http://localhost:3000/bookings/${bookingId}/confirm`);
-        console.log("Booking confirmation API response:", confirmResponse.data);
-        if (confirmResponse.data.message.includes("Email hóa đơn đã được gửi")) {
-          toast.success("Booking has been confirmed & email sent!");
+
+        await axios.put(`http://localhost:3000/bookings/${bookingId}/confirm`);
+
+        toast.success("Đơn hàng đã được xác nhận. Đang chuyển đến VNPay...");
+
+        const paymentResponse = await axios.post(
+          `http://localhost:3000/payment/vnpay-create?orderId=${orderId}`
+        );
+
+        const paymentUrl = paymentResponse.data.paymentUrl;
+        if (paymentUrl) {
+          window.location.href = paymentUrl;
         } else {
-          toast.warning("Booking confirmed, but email not sent!");
+          toast.error("Không tạo được liên kết thanh toán!");
         }
-        setBooking((prev) => (prev ? { ...prev, status: "confirmed" } : prev));
-        closeModal();
-        const paymentResponse = await axios.post(`http://localhost:3000/payment/vnpay-create?orderId=${orderId}`);
-        console.log("Payment URL generated:", paymentResponse.data.paymentUrl);
-        window.location.href = paymentResponse.data.paymentUrl;
       }
     } catch (error) {
-      console.error("Error in booking confirmation process:", error.response ? error.response.data : error.message);
-      toast.error("Error processing booking confirmation or payment!");
+      console.error("❌ Error in booking confirmation process:", error.response || error.message);
+      toast.error("Xảy ra lỗi khi xử lý xác nhận hoặc thanh toán!");
     }
   };
 

@@ -85,7 +85,7 @@ function PaymentResult() {
             //     alert("❌ Lỗi xác nhận đơn hàng!");
             // }
 
-            navigate("/");
+            navigate("/", { state: { bookingId, showReviewExperience: true } });
         } catch (error) {
             console.error("❌ Lỗi khi xác nhận booking!", error);
         }

@@ -1,10 +1,12 @@
 import styles from '../css/About.module.css'
 import Cookies from 'js-cookie';
+import { useNavigate } from "react-router";
 
-function About({ openBookingModal, openSelectDateTimeModal }: {
+function About({ }: {
   openBookingModal: () => void,
   openSelectDateTimeModal: () => void
 }) {
+  const navigate = useNavigate();
 
   const isUserLoggedIn = () => {
     const token = Cookies.get("token") || document.cookie.split('; ').find(row => row.startsWith('token='));
@@ -12,13 +14,7 @@ function About({ openBookingModal, openSelectDateTimeModal }: {
   };
 
   const handleBookNow = () => {
-    if (isUserLoggedIn()) {
-      console.log("User is logged in. Opening SelectDateTime modal...");
-      openSelectDateTimeModal();
-    } else {
-      console.log("User is NOT logged in. Opening Booking Form...");
-      openBookingModal();
-    }
+    navigate("/reservation");
   };
 
   return (
