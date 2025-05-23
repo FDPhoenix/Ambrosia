@@ -81,9 +81,7 @@
     margin-bottom: 15px;
 }
 
-/* Close button (implicitly handled by modalOverlay click) */
 
-/* Error alert */
 .alertDanger {
     background-color: #f8d7da;
     color: #721c24;

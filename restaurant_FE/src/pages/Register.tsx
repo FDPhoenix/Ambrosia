@@ -1,31 +1,33 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import FormModal from '../pages/common/form-modal';
-import { useNavigate } from 'react-router';
-import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub, FaLinkedinIn } from "react-icons/fa";
+import type React from "react"
+import { useState } from "react"
+import axios from "axios"
+import FormModal from "../pages/common/form-modal"
+import { useNavigate } from "react-router"
+import { FaEye, FaEyeSlash, FaGoogle, FaFacebook, FaGithub, FaLinkedinIn } from "react-icons/fa"
+import logo from "../assets/ambrosia-logo-2.png"
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-  });
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+  })
 
   const [errors, setErrors] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
-    password: '',
-    form: '',
-  });
+    fullName: "",
+    email: "",
+    phoneNumber: "",
+    password: "",
+    form: "",
+  })
 
-  const [otp, setOtp] = useState("");
-  const [isOtpFormOpen, setIsOtpFormOpen] = useState(false);
-  const navigate = useNavigate();
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  
+  const [otp, setOtp] = useState("")
+  const [isOtpFormOpen, setIsOtpFormOpen] = useState(false)
+  const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
+  const [loading, setLoading] = useState(false)
+
   const enterOtpForm = {
     title: "Enter The OTP",
     fields: [
@@ -35,167 +37,173 @@ const Register: React.FC = () => {
         name: "otp",
         type: "text",
         required: true,
-        onChange: (e: { target: { value: React.SetStateAction<string>; }; }) => setOtp(e.target.value),
+        onChange: (e: { target: { value: React.SetStateAction<string> } }) => setOtp(e.target.value),
       },
     ],
     submitText: "Verify OTP",
-  };
+  }
 
-  const onVerifyOtp = async (event: { preventDefault: () => void; }) => {
-    event.preventDefault();
+  const onVerifyOtp = async (event: { preventDefault: () => void }) => {
+    event.preventDefault()
     try {
       const response = await axios.post(`http://localhost:3000/auth/verify-otp`, {
         email: formData.email,
         otp,
-      });
+      })
       if (response.data.success == true) {
-        window.alert("OTP verified successfully! Go login now.");
-        setIsOtpFormOpen(false);
-        navigate('/login');
+        window.alert("OTP verified successfully! Go login now.")
+        setIsOtpFormOpen(false)
+        navigate("/login")
       } else {
-        window.alert("Error: " + response.data.message);
+        window.alert("Error: " + response.data.message)
       }
     } catch (error) {
-      console.error(error);
-      window.alert("An unknown error occurred.");
+      console.error(error)
+      window.alert("An unknown error occurred.")
     }
-  };
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target
     setFormData((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-  };
+    }))
+  }
 
   const validateForm = () => {
-    let isValid = true;
-    const newErrors = { ...errors };
+    let isValid = true
+    const newErrors = { ...errors }
 
     // Validate Full Name (cho phép tối đa 2 dấu cách)
     if (!formData.fullName.trim()) {
-      newErrors.fullName = 'Full Name is required';
-      isValid = false;
+      newErrors.fullName = "Full Name is required"
+      isValid = false
     } else if (formData.fullName.length > 50) {
-      newErrors.fullName = 'Full Name must not exceed 50 characters';
-      isValid = false;
+      newErrors.fullName = "Full Name must not exceed 50 characters"
+      isValid = false
     } else if (!/^[a-zA-ZÀ-ỹ]+( [a-zA-ZÀ-ỹ]+){0,2}$/.test(formData.fullName)) {
-      newErrors.fullName = 'Full Name can only have up to 2 spaces and must not contain special characters.';
-      isValid = false;
+      newErrors.fullName = "Full Name can only have up to 2 spaces and must not contain special characters."
+      isValid = false
     } else {
-      newErrors.fullName = '';
+      newErrors.fullName = ""
     }
 
     // Validate Email (không chứa khoảng trắng, không vượt quá 50 ký tự)
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!formData.email.trim()) {
-      newErrors.email = 'Valid email is required';
-      isValid = false;
+      newErrors.email = "Valid email is required"
+      isValid = false
     } else if (formData.email.length > 50) {
-      newErrors.email = 'Email must not exceed 50 characters';
-      isValid = false;
+      newErrors.email = "Email must not exceed 50 characters"
+      isValid = false
     } else if (/\s/.test(formData.email)) {
-      newErrors.email = 'Email must not contain spaces';
-      isValid = false;
+      newErrors.email = "Email must not contain spaces"
+      isValid = false
     } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Invalid email format';
-      isValid = false;
+      newErrors.email = "Invalid email format"
+      isValid = false
     } else {
-      newErrors.email = '';
+      newErrors.email = ""
     }
 
     // Validate Phone Number (chỉ chứa số, không có khoảng trắng)
     if (!formData.phoneNumber.trim()) {
-      newErrors.phoneNumber = 'Phone Number is required';
-      isValid = false;
+      newErrors.phoneNumber = "Phone Number is required"
+      isValid = false
     } else if (!/^\d+$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = 'Phone Number must contain only digits';
-      isValid = false;
+      newErrors.phoneNumber = "Phone Number must contain only digits"
+      isValid = false
     } else if (formData.phoneNumber.length > 15) {
-      newErrors.phoneNumber = 'Phone Number must not exceed 15 digits';
-      isValid = false;
+      newErrors.phoneNumber = "Phone Number must not exceed 15 digits"
+      isValid = false
     } else {
-      newErrors.phoneNumber = '';
+      newErrors.phoneNumber = ""
     }
 
     if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters long';
-      isValid = false;
+      newErrors.password = "Password must be at least 6 characters long"
+      isValid = false
     } else if (formData.password.length > 50) {
-      newErrors.password = 'Password must not exceed 50 characters';
-      isValid = false;
+      newErrors.password = "Password must not exceed 50 characters"
+      isValid = false
     } else if (/\s/.test(formData.password)) {
-      newErrors.password = 'Password must not contain spaces';
-      isValid = false;
+      newErrors.password = "Password must not contain spaces"
+      isValid = false
     } else if (!/[A-Za-z]/.test(formData.password)) {
-      newErrors.password = 'Password must contain at least one letter';
-      isValid = false;
+      newErrors.password = "Password must contain at least one letter"
+      isValid = false
     } else if (!/\d/.test(formData.password)) {
-      newErrors.password = 'Password must contain at least one number';
-      isValid = false;
+      newErrors.password = "Password must contain at least one number"
+      isValid = false
     } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(formData.password)) {
-      newErrors.password = 'Password must contain at least one special character';
-      isValid = false;
+      newErrors.password = "Password must contain at least one special character"
+      isValid = false
     } else {
-      newErrors.password = '';
+      newErrors.password = ""
     }
 
-    setErrors(newErrors);
-    return isValid;
-  };
+    setErrors(newErrors)
+    return isValid
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (validateForm()) {
       try {
-        setLoading(true);
-        const response = await axios.post('http://localhost:3000/auth/register', {
+        setLoading(true)
+        const response = await axios.post("http://localhost:3000/auth/register", {
           fullname: formData.fullName,
           email: formData.email,
           password: formData.password,
           phoneNumber: formData.phoneNumber,
-        });
+        })
 
         if (response.data.success) {
-          setIsOtpFormOpen(true);
+          setIsOtpFormOpen(true)
         } else {
-          setErrors({ ...errors, form: response.data.message });
+          setErrors({ ...errors, form: response.data.message })
         }
       } catch (error) {
-        console.error('Error during registration:', error);
-        setErrors({ ...errors, form: 'Registration failed. Please try again.' });
+        console.error("Error during registration:", error)
+        setErrors({ ...errors, form: "Registration failed. Please try again." })
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
     } else {
-      console.log('Form has errors');
+      console.log("Form has errors")
     }
-  };
+  }
 
   const handleFormModalClose = () => {
-    setIsOtpFormOpen(false);
-  };
+    setIsOtpFormOpen(false)
+  }
 
   const handleLoginGoogle = () => {
-    window.location.href = "http://localhost:3000/login/google";
-  };
+    window.location.href = "http://localhost:3000/login/google"
+  }
 
   const handleLoginFacebook = () => {
-    window.location.href = "http://localhost:3000/facebook";
-  };
+    window.location.href = "http://localhost:3000/facebook"
+  }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
-      <div className="flex w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-xl">
+<div className="flex flex-col justify-center items-center min-h-screen bg-gray-100 py-6 px-4">
+<div className="flex justify-center w-full mt-10 mb-6 md:hidden">
+  <div className="w-36 h-36 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-[#a68a64] shadow-lg">
+    <img src={logo} alt="Ambrosia Logo" className="w-full h-full object-cover" />
+  </div>
+</div>
+
+<div className="flex flex-col md:flex-row w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-xl min-h-[600px] md:min-h-[500px]">
         {/* Left Panel - Registration Form */}
-        <div className="w-1/2 p-8">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">Registration</h2>
+        <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col justify-center flex-1 space-y-6">
+          <h2 className="text-2xl font-bold mb-4 text-gray-800 text-center md:text-left">Registration</h2>
           {errors.form && <p className="text-red-500 text-sm mb-4 text-center">{errors.form}</p>}
-          
+
           <form onSubmit={handleSubmit} autoComplete="off">
-            <div className="mb-4">
+            <div className="mb-3">
               <input
                 type="text"
                 id="fullName"
@@ -208,8 +216,8 @@ const Register: React.FC = () => {
               />
               {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
             </div>
-            
-            <div className="mb-4">
+
+            <div className="mb-3">
               <input
                 type="email"
                 id="email"
@@ -222,8 +230,8 @@ const Register: React.FC = () => {
               />
               {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
             </div>
-            
-            <div className="mb-4">
+
+            <div className="mb-3">
               <input
                 type="tel"
                 id="phoneNumber"
@@ -236,10 +244,10 @@ const Register: React.FC = () => {
               />
               {errors.phoneNumber && <p className="text-red-500 text-xs mt-1">{errors.phoneNumber}</p>}
             </div>
-            
-            <div className="mb-5 relative">
+
+            <div className="mb-4 relative">
               <input
-                type={showPassword ? 'text' : 'password'}
+                type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
                 className="w-full py-3 px-4 bg-gray-100 border-0 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#a68a64]"
@@ -256,69 +264,83 @@ const Register: React.FC = () => {
               </span>
               {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
             </div>
-            
-            <button 
-              type="submit" 
-              className="w-full py-3.5 px-4 bg-[#a68a64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#8b7355] focus:outline-none focus:ring-2 focus:ring-[#a68a64] focus:ring-offset-2"
+
+            <button
+              type="submit"
+              className="w-full py-3 px-4 bg-[#a68a64] text-white font-medium rounded-lg transition-all duration-300 hover:bg-[#8b7355] focus:outline-none focus:ring-2 focus:ring-[#a68a64] focus:ring-offset-2"
               disabled={loading}
             >
-              {loading ? 'Registering...' : 'Register'}
+              {loading ? "Registering..." : "Register"}
             </button>
           </form>
-          
-          <div className="flex items-center my-6">
+
+          <div className="flex items-center my-4">
             <div className="flex-1 h-px bg-gradient-to-r from-transparent to-gray-200"></div>
             <span className="px-4 text-sm text-gray-500 font-medium">or register with</span>
             <div className="flex-1 h-px bg-gradient-to-r from-gray-200 to-transparent"></div>
           </div>
-          
-          <div className="flex justify-center gap-3">
-            <button 
-              type="button" 
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#db4437] transition-all duration-300 hover:bg-gray-200"
+
+          <div className="flex justify-center gap-2 md:gap-3 mb-3">
+            <button
+              type="button"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 text-[#db4437] transition-all duration-300 hover:bg-gray-200"
               onClick={handleLoginGoogle}
               disabled={loading}
             >
-              <FaGoogle />
+              <FaGoogle className="text-sm" />
             </button>
-            <button 
-              type="button" 
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#1877f2] transition-all duration-300 hover:bg-gray-200"
+            <button
+              type="button"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 text-[#1877f2] transition-all duration-300 hover:bg-gray-200"
               onClick={handleLoginFacebook}
               disabled={loading}
             >
-              <FaFacebook />
+              <FaFacebook className="text-sm" />
             </button>
-            <button 
-              type="button" 
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:bg-gray-200"
+            <button
+              type="button"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 text-gray-700 transition-all duration-300 hover:bg-gray-200"
               disabled={loading}
             >
-              <FaGithub />
+              <FaGithub className="text-sm" />
             </button>
-            <button 
-              type="button" 
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 text-[#0077b5] transition-all duration-300 hover:bg-gray-200"
+            <button
+              type="button"
+              className="w-9 h-9 flex items-center justify-center rounded-full bg-gray-100 text-[#0077b5] transition-all duration-300 hover:bg-gray-200"
               disabled={loading}
             >
-              <FaLinkedinIn />
+              <FaLinkedinIn className="text-sm" />
+            </button>
+          </div>
+          <div className="mt-3 text-center md:hidden">
+            <p className="text-sm text-gray-600">Already have an account?</p>
+            <button onClick={() => navigate("/login")} className="mt-1 text-[#a68a64] font-medium hover:underline">
+              Login
             </button>
           </div>
         </div>
-        
+
         {/* Right Panel - Welcome Back Section */}
-        <div className="w-1/2 p-8 flex flex-col justify-center items-center text-white text-center" style={{ backgroundColor: '#a68a64' }}>
+        <div
+          className="hidden md:flex md:w-1/2 p-8 flex-col justify-center items-center text-white text-center"
+          style={{ backgroundColor: "#a68a64" }}
+        >
           <h1 className="text-3xl font-bold mb-2">Welcome Back!</h1>
           <p className="text-sm mb-8 opacity-90">Already have an account?</p>
-          <button 
-            onClick={() => navigate('/login')}
+          <button
+            onClick={() => navigate("/login")}
             className="py-2.5 px-6 rounded-lg font-medium border-2 border-white transition-all duration-300 hover:bg-white hover:bg-opacity-10"
           >
             Login
           </button>
         </div>
       </div>
-      
+
+      {/* Footer Space Balancer */}
+      <div className="mt-4 text-center text-xs text-gray-500">
+        <p>© {new Date().getFullYear()} Ambrosia. All rights reserved.</p>
+      </div>
+
       {isOtpFormOpen && (
         <FormModal
           handleClose={handleFormModalClose}
@@ -328,7 +350,7 @@ const Register: React.FC = () => {
         />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Register;
+export default Register
